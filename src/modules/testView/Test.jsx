@@ -95,7 +95,7 @@ class Test extends Component {
         className={
           index === questionNumber - 1
             ? "page current"
-            : index < questionNumber - 1
+            : userAnswers[index]
             ? "page done"
             : "page"
         }
