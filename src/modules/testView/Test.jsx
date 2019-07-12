@@ -31,7 +31,7 @@ class Test extends Component {
     clearInterval(this.intervalHandle);
   }
   submit() {
-    console.log("Submit");
+    console.log(this.state.userAnswers);
   }
 
   tick() {
@@ -60,29 +60,26 @@ class Test extends Component {
     const { minutes, seconds, questionNumber, userAnswers } = this.state;
     /*
     {
-        title: "JavaScript",
-        questions: [
-          "What is closure?",
-          "What is better func expression or func declaration?"
-        ],
-        answers: [["A", "B", "C", "D"], ["A", "B", "C", "D"]]
-      }
-    */
+      title: "JavaScript",
+      questions: ["What is closure?", ""],
+      answers: [["A", "B", "C", "D"], ["A", "B", "C", "D"]]
+    };
+*/
     const { title, questions, answers } = this.props.testData
       ? this.props.testData
       : this.state.testData;
     const answersComp = answers.length
       ? answers[questionNumber - 1].map((answer, index) => (
-          <label key={answer}>
+          <label key={index}>
             <p>{answer}</p>
 
             <input
               type="radio"
               value={index}
-              checked={userAnswers[questionNumber - 1] === answer}
+              checked={userAnswers[questionNumber - 1] === index}
               onChange={() => {
                 let a = userAnswers;
-                a[questionNumber - 1] = answer;
+                a[questionNumber - 1] = index;
                 this.setState({ userAnswers: a });
               }}
               name="answer"
@@ -131,7 +128,15 @@ class Test extends Component {
                 <i className="arrow left" />
               </span>
               {questionNumber === questions.length ? (
-                <span onClick={() => this.submit()}>
+                <span
+                  onClick={() => {
+                    if (userAnswers.length === questions.length) {
+                      this.submit();
+                    } else {
+                      alert("Answer all questions please");
+                    }
+                  }}
+                >
                   <i className="arrow end" />
                 </span>
               ) : (

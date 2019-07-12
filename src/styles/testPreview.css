@@ -1,0 +1,45 @@
+.allTestsPreviewCont {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.searchBar {
+  border: 1px solid #fff;
+  border-radius: 7px;
+  color: #fff;
+  width: 85%;
+  height: 30px;
+  padding: 5px;
+  background: #222;
+}
+.testPreviewCont {
+  position: relative;
+  background: rgb(237, 250, 255);
+  border: 1px solid #fff;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 10px 10px;
+  width: 40%;
+  overflow: hidden;
+}
+.testName {
+  background: #222;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.testImage {
+  width: 100%;
+  height: auto;
+}
+.testBtn {
+  cursor: pointer;
+  text-align: center;
+  background: #77f;
+  color: #fff;
+  padding: 10px 0;
+  display: block;
+  width: 100%;
+  border: none;
+}
