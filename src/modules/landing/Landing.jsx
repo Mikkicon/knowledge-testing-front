@@ -1,20 +1,18 @@
 import React, { Component } from "react";
-import TestOnLanding from "./TestOnLanding";
-import MagnifyBadge from "./FilterBadge";
-import SearchBar from "./SearchBar";
+import { TestOnLanding, FilterBadge } from "../../moduleExports";
 
 class Landing extends Component {
   render() {
     return (
       <div className="landingCont">
         <div className="allTestsPreviewCont">
-          <SearchBar />
+          <input className="searchBar" type="text" placeholder="Search..." />
           {[1, 1, 1, 1, 1, 1, 1, 1].map((_, index) => (
             <TestOnLanding key={index} />
           ))}
         </div>
         <button className="loadMoreTests">MORE</button>
-        <MagnifyBadge />
+        <FilterBadge />
         <footer />
       </div>
     );

@@ -6,20 +6,27 @@ class Navbar extends Component {
     return (
       <React.Fragment>
         <div className="nav">
-          <Link className="menuItem" to="/">
-            <div> Home</div>
-          </Link>
+          <div className="menuItem dropDown">
+            <div className="home">
+              <b className="menuCarret" />
+            </div>
+            <Link to="/" className="subMenu">
+              Tests
+            </Link>
+          </div>
           <Link className="menuItem" to="/login">
-            <div> Login</div>
+            <div>Login</div>
           </Link>
           <Link className="menuItem" to="/register">
-            <div> Register</div>
+            <div>Register</div>
           </Link>
           <Link className="menuItem" to="/test">
-            <div> Test</div>
+            <div>Test</div>
           </Link>
           <div className="burger">
-            <input type="checkbox" /> <span /> <span /> <span />
+            <input type="checkbox" /> <span /> <span />
+            <span />
+            <div className="leftMenu" />
           </div>
         </div>
       </React.Fragment>

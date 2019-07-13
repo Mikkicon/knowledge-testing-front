@@ -14,6 +14,7 @@ class Test extends Component {
     this.secondsPassed = 0;
     this.tick = this.tick.bind(this);
     this.submit = this.submit.bind(this);
+    this.chooseAnswer = this.chooseAnswer.bind(this);
   }
   componentDidMount() {
     fetch("http://localhost:3000/tests/0")
@@ -55,7 +56,11 @@ class Test extends Component {
 
     this.secondsPassed++;
   }
-
+  chooseAnswer(index) {
+    let a = this.state.userAnswers;
+    a[this.state.questionNumber - 1] = index;
+    this.setState({ userAnswers: a });
+  }
   render() {
     const { minutes, seconds, questionNumber, userAnswers } = this.state;
     /*
@@ -65,41 +70,46 @@ class Test extends Component {
       answers: [["A", "B", "C", "D"], ["A", "B", "C", "D"]]
     };
 */
-    const { title, questions, answers } = this.props.testData
+    let { title, questions, answers } = this.props.testData
       ? this.props.testData
       : this.state.testData;
-    const answersComp = answers.length
-      ? answers[questionNumber - 1].map((answer, index) => (
-          <label key={index}>
-            <input
-              type="radio"
-              value={index}
-              checked={userAnswers[questionNumber - 1] === index}
-              onChange={() => {
-                let a = userAnswers;
-                a[questionNumber - 1] = index;
-                this.setState({ userAnswers: a });
-              }}
-              name="answer"
-            />
-            <p>{answer}</p>
+    let answersComp = null,
+      pagesComp = null;
+    if (!title || !questions || !answers) {
+      console.log("missing fieds in setsData");
+      answersComp = <div />;
+      pagesComp = <div />;
+      title = "";
+      questions = [];
+      answers = [];
+    } else {
+      answersComp = answers[questionNumber - 1].map((answer, index) => (
+        <label key={index}>
+          <input
+            type="radio"
+            value={index}
+            checked={userAnswers[questionNumber - 1] === index}
+            onChange={() => this.chooseAnswer(index)}
+            name="answer"
+          />
+          <p>{answer}</p>
+          <span className="checkmark" />
+        </label>
+      ));
 
-            <span className="checkmark" />
-          </label>
-        ))
-      : "";
-    const pagesComp = questions.map((q, index) => (
-      <span
-        key={index}
-        className={
-          index === questionNumber - 1
-            ? "page current"
-            : userAnswers[index]
-            ? "page done"
-            : "page"
-        }
-      />
-    ));
+      pagesComp = questions.map((_, index) => (
+        <span
+          key={index}
+          className={
+            index === questionNumber - 1
+              ? "page current"
+              : userAnswers[index]
+              ? "page done"
+              : "page"
+          }
+        />
+      ));
+    }
     return (
       <div>
         <h2>{title}</h2>

@@ -18,6 +18,12 @@
       "request": "launch",
       "name": "Launch Program",
       "program": "${workspaceFolder}/start"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Parallel sorting",
+      "program": "/Users/mp/JSProjects/a/Promises/ParallelSort.js"
     }
   ]
 }

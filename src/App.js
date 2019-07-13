@@ -1,14 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import Login from "./modules/auth/Login";
-import Register from "./modules/auth/Register";
-import Test from "./modules/testView/Test";
-import Navbar from "./modules/Navbar";
+import { Landing, Test, Login, Register, Navbar } from "./moduleExports";
 import "./styles/test.css";
 import "./styles/navbar.css";
 import "./styles/landing.css";
-import "./styles/magnifyBadge.css";
-import Landing from "./modules/landing/Landing";
+import "./styles/filterBadge.css";
 /*
 /users
 /users/:id

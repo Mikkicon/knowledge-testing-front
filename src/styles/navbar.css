@@ -25,14 +25,67 @@ a {
   justify-content: center;
   border-right: 1px solid #fff;
 }
+.menuCarret {
+  position: absolute;
+}
+.menuCarret::before {
+  content: "";
+  left: 5px;
+  top: 10px;
+  position: absolute;
+  border-top: 10px solid #fff;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
 .menuItem > div {
   padding: 10px 0 0 0;
+}
+.home {
+  margin: 0 auto;
+}
+.home::before {
+  content: "";
+  left: 10px;
+  top: 10px;
+  position: absolute;
+  border-bottom: 15px solid #fff;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-radius: 10px;
+}
+.home::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 15px;
+  left: 15px;
+  top: 20px;
+  background: #fff;
+  transition: all 0.3s;
+}
+.subMenu {
+  position: absolute;
+  height: 30px;
+  top: 50px;
+  left: 50%;
+  display: none;
+  color: #fff;
+  background: #000;
+  padding: 10px 20px 10px 20px;
+  transition: all 0.3s;
+}
+.dropDown {
+  position: relative;
+}
+.dropDown:hover .subMenu {
+  display: block;
+  transition: all 0.3s;
 }
 
 /* ________BURGER________ */
 
 .burger {
-  position: relative;
   margin: 0 10px;
 }
 .burger input {
@@ -40,14 +93,25 @@ a {
   width: 50px;
   height: 40px;
   position: absolute;
-  top: -10px;
-  left: -10px;
+  top: 0;
+  right: -10px;
   cursor: pointer;
   opacity: 0;
   z-index: 2;
 }
-.burger input:checked ~ .menuItem {
-  display: none;
+.leftMenu {
+  width: 0;
+  height: 0;
+  left: 0;
+  top: 50px;
+  background: #000;
+  position: absolute;
+  transition: all 0.3s;
+}
+.burger input:checked ~ .leftMenu {
+  width: 200px;
+  height: 200px;
+  transition: all 0.3s;
 }
 .burger span {
   display: block;
