@@ -1,26 +1,56 @@
+.landingCont {
+  text-align: center;
+}
+
 .allTestsPreviewCont {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+.loadMoreTests {
+  cursor: pointer;
+  width: 86%;
+  background: #3fce52;
+  padding: 10px 0;
+  text-align: center;
+  border: none;
+  margin: 30px 0;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 7px;
+}
+.loadMoreTests:hover {
+  background: #32a541;
+}
+footer {
+  height: 200px;
+  background: #222;
+  margin-top: 50px;
+}
 .searchBar {
   border: 1px solid #fff;
   border-radius: 7px;
   color: #fff;
-  width: 85%;
+  width: 86%;
   height: 30px;
   padding: 5px;
+  margin-bottom: 30px;
   background: #222;
 }
 .testPreviewCont {
+  max-width: 150px;
+  min-width: 80px;
   position: relative;
   background: rgb(237, 250, 255);
   border: 1px solid #fff;
   border-radius: 10px;
   display: inline-block;
-  margin: 10px 10px;
+  margin: 15px 4%;
   width: 40%;
   overflow: hidden;
+}
+.testPreviewCont:hover {
+  opacity: 0.85;
 }
 .testName {
   background: #222;
@@ -42,4 +72,10 @@
   display: block;
   width: 100%;
   border: none;
+}
+@media (min-width: 600px) {
+  .loadMoreTests {
+    width: 500px;
+    margin: 30px auto;
+  }
 }

@@ -6,7 +6,7 @@ import Test from "./modules/testView/Test";
 import Navbar from "./modules/Navbar";
 import "./styles/test.css";
 import "./styles/navbar.css";
-import "./styles/testPreview.css";
+import "./styles/landing.css";
 import "./styles/magnifyBadge.css";
 import Landing from "./modules/landing/Landing";
 /*

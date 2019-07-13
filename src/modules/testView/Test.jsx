@@ -71,8 +71,6 @@ class Test extends Component {
     const answersComp = answers.length
       ? answers[questionNumber - 1].map((answer, index) => (
           <label key={index}>
-            <p>{answer}</p>
-
             <input
               type="radio"
               value={index}
@@ -84,6 +82,7 @@ class Test extends Component {
               }}
               name="answer"
             />
+            <p>{answer}</p>
 
             <span className="checkmark" />
           </label>

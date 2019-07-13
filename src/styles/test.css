@@ -10,9 +10,16 @@ h2 {
 p {
   margin: 0;
 }
+i {
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 10px;
+}
 .container {
-  color: #000;
-  background: rgb(237, 250, 255);
+  max-width: 850px;
+  color: #fff;
+  background: #5c5c5f;
   border: 1px solid #fff;
   border-radius: 10px;
   margin: 0 10px 40%;
@@ -22,28 +29,8 @@ p {
   background: #fff;
   display: inline-block;
   margin: 0 5px;
-  width: 1px;
+  width: 3px;
   height: 25px;
-}
-i {
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  display: inline-block;
-  padding: 10px;
-}
-.left {
-  transform: rotate(135deg);
-  left: 5px;
-  margin-left: 15px;
-}
-.right {
-  transform: rotate(-45deg);
-  margin-left: 5px;
-}
-.end {
-  transform: rotate(45deg);
-  margin: 0 0 10px 15px;
-  padding: 10px 5px;
 }
 
 .question {
@@ -52,6 +39,9 @@ i {
   padding: 10px;
   font-size: 1.5em;
 }
+
+/* ________ANSWERS________ */
+
 .answers {
   position: relative;
 }
@@ -68,7 +58,7 @@ i {
   user-select: none;
 }
 .answers > label:hover {
-  background: rgb(175, 209, 223);
+  background: rgb(120, 150, 187);
 }
 .answers input {
   position: absolute;
@@ -88,7 +78,7 @@ i {
 }
 
 .answers input:checked ~ .checkmark {
-  background-color: #2196f3;
+  background-color: #77f;
 }
 
 .checkmark:after {
@@ -100,14 +90,18 @@ i {
 .answers input:checked ~ .checkmark:after {
   display: block;
 }
+
 .answers .checkmark:after {
-  top: 9px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
+  top: 6px;
+  left: 6px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: white;
 }
+
+/* ________BOTTOM________ */
+
 .footer {
   background: #222;
   color: #fff;
@@ -117,23 +111,10 @@ i {
   align-items: center;
 }
 
-.navigate > span {
-  cursor: pointer;
-  width: 40px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-.navigate > span:first {
-  padding-left: 25px;
-}
-.navigate > span:hover {
-  background: #77f;
-}
-.navigate > span.end:hover {
-  background: #0b0;
-}
+/* ________PAGES________ */
+
 .pages {
+  width: 100%;
   display: flex;
   margin-left: 10px;
   justify-content: space-around;
@@ -165,15 +146,14 @@ i {
   background: #55f;
   box-shadow: 0 0 0 2px #fff;
 }
-.navigate {
-  height: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-}
+
+/* ________TIME________ */
+
 .time {
+  width: 100%;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .clock {
   content: "";
@@ -195,4 +175,53 @@ i {
   top: 3px;
   left: 9px;
   transform: rotate(90deg);
+}
+
+/* ________NAV________ */
+
+.navigate {
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.navigate > span {
+  cursor: pointer;
+  width: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.navigate > span:first {
+  padding-left: 25px;
+}
+.navigate > span:hover {
+  background: #77f;
+}
+.navigate > span.end:hover {
+  background: #0b0;
+}
+.left {
+  transform: rotate(135deg);
+  left: 5px;
+  margin-left: 15px;
+}
+.right {
+  transform: rotate(-45deg);
+  margin-left: 5px;
+}
+.end {
+  transform: rotate(45deg);
+  margin: 0 0 10px 15px;
+  padding: 10px 5px;
+}
+
+@media (min-width: 480px) {
+  .container {
+    margin: 0 30px 40%;
+  }
+}
+@media (min-width: 900px) {
+  .container {
+    margin: 0 auto 40%;
+  }
 }

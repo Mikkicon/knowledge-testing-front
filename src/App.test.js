@@ -6,7 +6,7 @@ import Test from "./modules/testView/Test";
 import Login from "./modules/auth/Login";
 import Register from "./modules/auth/Register";
 import TestOnLanding from "./modules/landing/TestOnLanding";
-import MagnifyBadge from "./modules/landing/MagnifyBadge";
+import MagnifyBadge from "./modules/landing/FilterBadge";
 import SearchBar from "./modules/landing/SearchBar";
 
 const div = document.createElement("div");
