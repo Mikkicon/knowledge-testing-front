@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import renderer from "react-test-renderer";
+import { create } from "react-test-renderer";
 import { BrowserRouter } from "react-router-dom";
 import {
   App,
@@ -63,25 +63,31 @@ describe("'Renders without crashing tests: '", () => {
 
 describe("Snapshot tests (toMatchSnapshot()):", () => {
   it(`<Test/>`, () => {
-    const tree = renderer.create(<Test />).toJSON();
+    const tree = create(<Test />).toJSON();
     expect(tree).toMatchSnapshot();
   });
   it(`Empty test as prop to <Test/>:`, () => {
-    const tree = renderer.create(<Test testData={{}} />).toJSON();
+    const tree = create(<Test testData={{}} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
   it(`Non-Object (3) as prop to <Test/>:`, () => {
-    const tree = renderer.create(<Test testData={3} />).toJSON();
+    const tree = create(<Test testData={3} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
   it(`<Landing/>`, () => {
-    const tree = renderer
-      .create(
-        <BrowserRouter>
-          <Landing />
-        </BrowserRouter>
-      )
-      .toJSON();
+    const tree = create(
+      <BrowserRouter>
+        <Landing />
+      </BrowserRouter>
+    ).toJSON();
     expect(tree).toMatchSnapshot();
+  });
+});
+describe("Functions of Landing", () => {
+  it("loadPages: ", () => {
+    const component = create(<Landing />);
+    const instance = component.getInstance();
+    instance.handleClick(-1, 0);
+    expect(component).toMatchSnapshot();
   });
 });

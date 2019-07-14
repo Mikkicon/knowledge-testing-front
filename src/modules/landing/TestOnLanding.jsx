@@ -7,7 +7,7 @@ class TestOnLanding extends Component {
     return (
       <div className="testPreviewCont">
         <Link to="/test">
-          <div className="testName">JavaScript</div>
+          <div className="testName">JavaScript {this.props.number}</div>
           <img className="testImage" src={JS} alt="Loading..." />
           <div className="testBtn">PLAY</div>
         </Link>

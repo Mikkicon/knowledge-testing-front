@@ -18,6 +18,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      testnet: true,
       testList: [],
       testData: {
         title: "JavaScript",
@@ -64,6 +65,7 @@ class App extends Component {
     };
   }
   render() {
+    const { testnet, testData } = this.state;
     return (
       <React.Fragment>
         <BrowserRouter>
@@ -77,7 +79,7 @@ class App extends Component {
           <Route path="/register" component={() => <Register />} />
           <Route
             path="/test"
-            component={() => <Test testData={this.state.testData} />}
+            component={() => <Test testData={testnet ? testData : ""} />}
           />
         </BrowserRouter>
       </React.Fragment>
