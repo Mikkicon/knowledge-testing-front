@@ -7,6 +7,7 @@ class Test extends Component {
       minutes: "0",
       seconds: "00",
       questionNumber: 1,
+      id: window.location.pathname.slice(6),
       testData: { title: "", questions: [], answers: [] },
       userAnswers: []
     };
@@ -17,22 +18,41 @@ class Test extends Component {
     this.chooseAnswer = this.chooseAnswer.bind(this);
   }
   componentDidMount() {
-    fetch("http://localhost:3000/tests/0")
-      .then(rawTest => (rawTest ? rawTest.json() : console.log("REJECT")))
-      .then(testData => {
-        this.setState({ testData });
-        return testData;
-      })
-      .then(promise =>
-        promise ? (this.intervalHandle = setInterval(this.tick, 1000)) : null
-      )
-      .catch(err => console.log(err));
+    const { id } = this.state;
+    console.log(id);
+    // this.intervalHandle = setInterval(this.tick, 1000);
+    if (!localStorage.hasOwnProperty(id))
+      fetch("http://localhost:3000/tests/" + id)
+        .then(rawTest => (rawTest ? rawTest.json() : console.log("REJECT")))
+        .then(testData => {
+          this.setState({ testData });
+          return testData;
+        })
+        .then(test => localStorage.setItem(id, JSON.stringify(test)))
+        .catch(err => console.log(err));
   }
   componentWillUnmount() {
     clearInterval(this.intervalHandle);
   }
   submit() {
     console.log(this.state.userAnswers);
+    console.log(
+      JSON.stringify({
+        answers: this.state.userAnswers,
+        time: this.secondsPassed
+      })
+    );
+
+    fetch("http://localhost:3000/tests/", {
+      method: "POST",
+      "Content-Type": "application/json",
+      body: JSON.stringify({
+        answers: this.state.userAnswers,
+        time: this.secondsPassed
+      })
+    })
+      .then(rawTest => console.log(rawTest))
+      .catch(err => console.log(err));
   }
 
   tick() {
@@ -62,17 +82,12 @@ class Test extends Component {
     this.setState({ userAnswers: a });
   }
   render() {
-    const { minutes, seconds, questionNumber, userAnswers } = this.state;
-    /*
-    {
-      title: "JavaScript",
-      questions: ["What is closure?", ""],
-      answers: [["A", "B", "C", "D"], ["A", "B", "C", "D"]]
-    };
-*/
-    let { title, questions, answers } = this.props.testData
-      ? this.props.testData
+    const { minutes, seconds, questionNumber, userAnswers, id } = this.state;
+
+    let { title, questions, answers } = localStorage.hasOwnProperty(id)
+      ? JSON.parse(localStorage.getItem(id))
       : this.state.testData;
+
     let answersComp = null,
       pagesComp = null;
     if (!title || !questions || !answers) {

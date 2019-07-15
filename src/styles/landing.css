@@ -16,6 +16,8 @@ b {
   background: #36af46;
   padding: 10px 10px;
   text-align: center;
+  font-size: medium;
+  font-weight: bold;
   max-width: 150px;
   min-width: 80px;
   margin: 10px;
@@ -27,7 +29,8 @@ b {
   background: #819985;
 }
 .loadMoreTests:disabled:hover {
-  background: #244d2a;
+  background: #819985;
+  cursor: default;
 }
 .loadMoreTests:hover {
   background: #2b8f38;
@@ -41,6 +44,7 @@ footer {
   border: 1px solid #fff;
   border-radius: 7px;
   color: #fff;
+  font-size: medium;
   width: 86%;
   height: 30px;
   padding: 5px;

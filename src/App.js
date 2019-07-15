@@ -77,10 +77,7 @@ class App extends Component {
           <Route exact path="/" component={() => <Landing />} />
           <Route path="/login" component={() => <Login />} />
           <Route path="/register" component={() => <Register />} />
-          <Route
-            path="/test"
-            component={() => <Test testData={testnet ? testData : ""} />}
-          />
+          <Route path="/test/" component={() => <Test />} />
         </BrowserRouter>
       </React.Fragment>
     );
