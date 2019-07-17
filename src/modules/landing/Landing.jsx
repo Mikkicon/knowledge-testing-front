@@ -1,39 +1,38 @@
 import React, { Component } from "react";
 import { TestOnLanding, FilterBadge } from "../../moduleExports";
 import { isNumber } from "util";
+import Footer from "./Footer";
 
 class Landing extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       currentPage: 0,
-      pageAmount: 0,
+      pageAmount: 1,
       selectedHardneses: new Set(),
       filteredTests: [],
       searchQuery: "",
+      testsData: [],
       tests: []
     };
+
+    this.loadPage = this.loadPage.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.checkParams = this.checkParams.bind(this);
     this.filterResult = this.filterResult.bind(this);
-    this.loadPage = this.loadPage.bind(this);
     this.searchManager = this.searchManager.bind(this);
   }
-
-  checkParams(page, dir) {
-    return (
-      isNumber(page) && page >= 0 && (dir === 1 || dir === -1 || dir === 0)
-    );
+  componentDidMount() {
+    this.loadPage(0);
   }
 
-  searchManager(input) {
-    // debugger;
-
-    let { hardness, searchQuery } = input;
+  searchManager(searchOrFilterInput) {
+    let { hardness, searchQuery } = searchOrFilterInput;
     let selectedHardneses = new Set(this.state.selectedHardneses);
     let filteredTests = [...this.state.tests];
 
-    switch (Object.keys(input)[0]) {
+    switch (Object.keys(searchOrFilterInput)[0]) {
       case "hardness":
         selectedHardneses.has(hardness)
           ? selectedHardneses.delete(hardness)
@@ -73,6 +72,18 @@ class Landing extends Component {
   }
 
   loadPage(newCurrentPage) {
+    const testnetTests = [
+      { title: "JavaScript" },
+      { title: "C++" },
+      { title: "C#" },
+      { title: "Java" },
+      { title: "JavaScript" },
+      { title: "C++" },
+      { title: "C#" },
+      { title: "Java" },
+      { title: "JavaScript" },
+      { title: "C++" }
+    ];
     fetch(`http://localhost:3000/tests?page=${newCurrentPage}`)
       .then(response => response.json())
       .then(({ tests, pageAmount }) => {
@@ -83,7 +94,17 @@ class Landing extends Component {
           currentPage: newCurrentPage
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log("Error: ", err);
+        this.props.testnet
+          ? this.setState({
+              tests: testnetTests,
+              filteredTests: testnetTests,
+              pageAmount: 2,
+              currentPage: 0
+            })
+          : console.log("Testnet disabled.");
+      });
   }
 
   handleClick(currentPage, direction) {
@@ -95,8 +116,10 @@ class Landing extends Component {
     }
   }
 
-  componentDidMount() {
-    this.loadPage(0);
+  checkParams(page, dir) {
+    return (
+      isNumber(page) && page >= 0 && (dir === 1 || dir === -1 || dir === 0)
+    );
   }
 
   render() {
@@ -106,7 +129,7 @@ class Landing extends Component {
         <div className="allTestsPreviewCont">
           <input
             onChange={e => this.searchManager({ searchQuery: e.target.value })}
-            className="searchBar"
+            className="textInput search"
             type="text"
             placeholder="Search..."
           />
@@ -120,7 +143,7 @@ class Landing extends Component {
           <button
             disabled={currentPage === 0}
             onClick={() => this.handleClick(currentPage, -1)}
-            className="loadMoreTests"
+            className="customBtn green pagination"
           >
             PREV 10
           </button>
@@ -132,15 +155,14 @@ class Landing extends Component {
           <button
             disabled={currentPage + 1 === pageAmount}
             onClick={() => this.handleClick(currentPage, 1)}
-            className="loadMoreTests"
+            className="customBtn green pagination"
           >
             NEXT 10
           </button>
         </div>
 
         <FilterBadge searchManager={this.searchManager} />
-
-        <footer />
+        <Footer />
       </div>
     );
   }

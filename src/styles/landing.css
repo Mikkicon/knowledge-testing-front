@@ -10,53 +10,61 @@
 b {
   margin: auto 0;
 }
-.loadMoreTests {
+.customBtn {
   cursor: pointer;
   width: 40%;
-  background: #36af46;
   padding: 10px 10px;
   text-align: center;
   font-size: medium;
   font-weight: bold;
-  max-width: 150px;
-  min-width: 80px;
   margin: 10px;
   color: #fff;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
   border-radius: 7px;
 }
-.loadMoreTests:disabled {
+.blue {
+  background: #1d45b4;
+}
+.blue:hover {
+  background: #366eaf;
+}
+.pagination {
+  max-width: 150px;
+  min-width: 80px;
+}
+.customBtn:disabled {
   background: #819985;
 }
-.loadMoreTests:disabled:hover {
+.customBtn:disabled:hover {
   background: #819985;
   cursor: default;
 }
-.loadMoreTests:hover {
+.green {
+  background: #36af46;
+}
+.green:hover {
   background: #2b8f38;
 }
-footer {
-  height: 200px;
-  background: #222;
-  margin-top: 50px;
-}
-.searchBar {
-  border: 1px solid #fff;
+
+.textInput {
+  border: 2px solid #fff;
   border-radius: 7px;
   color: #fff;
   font-size: medium;
-  width: 86%;
   height: 30px;
   padding: 5px;
-  margin-bottom: 30px;
   background: #222;
+}
+.search {
+  width: 86%;
+  margin-bottom: 30px;
 }
 .testPreviewCont {
   max-width: 150px;
   min-width: 80px;
   position: relative;
   background: rgb(237, 250, 255);
-  border: 1px solid #fff;
+  border: 2px solid #1d45b4;
   border-radius: 10px;
   display: inline-block;
   margin: 15px 4%;
@@ -77,19 +85,33 @@ footer {
   width: 100%;
   height: auto;
 }
+.auth {
+  margin-top: 50px;
+}
+
 .testBtn {
   cursor: pointer;
   text-align: center;
-  background: #77f;
+  background: #1d45b4;
   color: #fff;
   padding: 10px 0;
   display: block;
   width: 100%;
   border: none;
 }
+
+.footer {
+  background: #222;
+  margin-top: 100px;
+}
 @media (max-width: 600px) {
-  .loadMoreTests {
+  .pagination {
     padding: 20px 10px;
+  }
+  .customBtn {
     width: auto;
+  }
+  .auth {
+    padding: 20px 10px;
   }
 }

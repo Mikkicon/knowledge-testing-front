@@ -8,7 +8,48 @@ class Test extends Component {
       seconds: "00",
       questionNumber: 1,
       id: window.location.pathname.slice(6),
-      testData: { title: "", questions: [], answers: [] },
+      testData: {
+        title: "JavaScript",
+        questions: [
+          "What is closure?",
+          "What is better func expression or func declaration?",
+          "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
+          "Repellat accusantium non vel voluptatibus facere nihil eos!",
+          "Repellat accusantium non vel voluptatibus modi qui quos quisquam aspernatur deleniti saepe eum quod!"
+        ],
+        answers: [
+          [
+            "A closure is the combination of a function and the lexical environment within which that function was declared.",
+            "A closure is the combination of a function and the lexical environment within which that function was declared.",
+            "A closure is the combination of a function and the lexical environment within which that function was declared.",
+            "A closure is the combination of a function and the lexical environment within which that function was declared."
+          ],
+          [
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!"
+          ],
+          [
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!"
+          ],
+          [
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!"
+          ],
+          [
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
+            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!"
+          ]
+        ]
+      },
       userAnswers: []
     };
 
@@ -21,14 +62,14 @@ class Test extends Component {
     const { id } = this.state;
     console.log(id);
     // this.intervalHandle = setInterval(this.tick, 1000);
-    if (!localStorage.hasOwnProperty(id))
+    if (!sessionStorage.hasOwnProperty(id))
       fetch("http://localhost:3000/tests/" + id)
         .then(rawTest => (rawTest ? rawTest.json() : console.log("REJECT")))
         .then(testData => {
           this.setState({ testData });
           return testData;
         })
-        .then(test => localStorage.setItem(id, JSON.stringify(test)))
+        .then(test => sessionStorage.setItem(id, JSON.stringify(test)))
         .catch(err => console.log(err));
   }
   componentWillUnmount() {
@@ -45,7 +86,7 @@ class Test extends Component {
 
     fetch("http://localhost:3000/tests/", {
       method: "POST",
-      "Content-Type": "application/json",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         answers: this.state.userAnswers,
         time: this.secondsPassed
@@ -84,8 +125,8 @@ class Test extends Component {
   render() {
     const { minutes, seconds, questionNumber, userAnswers, id } = this.state;
 
-    let { title, questions, answers } = localStorage.hasOwnProperty(id)
-      ? JSON.parse(localStorage.getItem(id))
+    let { title, questions, answers } = sessionStorage.hasOwnProperty(id)
+      ? JSON.parse(sessionStorage.getItem(id))
       : this.state.testData;
 
     let answersComp = null,
@@ -133,7 +174,7 @@ class Test extends Component {
             {questionNumber}. {questions[questionNumber - 1]}
           </div>
           <div className="answers">{answersComp}</div>
-          <div className="footer">
+          <div className="testFooter">
             <div className="pages">{pagesComp}</div>
             <span className="divider" />
             <div className="time">

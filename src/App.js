@@ -5,6 +5,8 @@ import "./styles/test.css";
 import "./styles/navbar.css";
 import "./styles/landing.css";
 import "./styles/filterBadge.css";
+import User from "./modules/auth/User";
+import Contacts from "./modules/other/Contacts";
 /*
 /users
 /users/:id
@@ -19,53 +21,11 @@ class App extends Component {
     super(props);
     this.state = {
       testnet: true,
-      testList: [],
-      testData: {
-        title: "JavaScript",
-        questions: [
-          "What is closure?",
-          "What is better func expression or func declaration?",
-          "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
-          "Repellat accusantium non vel voluptatibus facere nihil eos!",
-          "Repellat accusantium non vel voluptatibus modi qui quos quisquam aspernatur deleniti saepe eum quod!"
-        ],
-        answers: [
-          [
-            "A closure is the combination of a function and the lexical environment within which that function was declared.",
-            "A closure is the combination of a function and the lexical environment within which that function was declared.",
-            "A closure is the combination of a function and the lexical environment within which that function was declared.",
-            "A closure is the combination of a function and the lexical environment within which that function was declared."
-          ],
-          [
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!"
-          ],
-          [
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!"
-          ],
-          [
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!"
-          ],
-          [
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!",
-            "Repellat accusantium non vel voluptatibus facere nihil eos sapiente quaerat modi qui quos quisquam aspernatur deleniti saepe eum quod!"
-          ]
-        ]
-      }
+      testList: []
     };
   }
   render() {
-    const { testnet, testData } = this.state;
+    const { testnet } = this.state;
     return (
       <React.Fragment>
         <BrowserRouter>
@@ -74,10 +34,16 @@ class App extends Component {
           <br />
           <br />
           <br />
-          <Route exact path="/" component={() => <Landing />} />
+          <Route
+            exact
+            path="/"
+            component={() => <Landing testnet={testnet} />}
+          />
           <Route path="/login" component={() => <Login />} />
+          <Route path="/test" component={() => <Test />} />
           <Route path="/register" component={() => <Register />} />
-          <Route path="/test/" component={() => <Test />} />
+          <Route path="/contacts" component={() => <Contacts />} />
+          <Route path="/me" component={() => <User testnet={testnet} />} />
         </BrowserRouter>
       </React.Fragment>
     );

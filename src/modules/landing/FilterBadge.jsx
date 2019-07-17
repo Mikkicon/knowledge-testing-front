@@ -49,7 +49,7 @@ class FilterBadge extends Component {
           <div>
             <button
               onClick={() => localStorage.clear()}
-              className="loadMoreTests"
+              className="customBtn green"
             >
               Clear cached tests
             </button>

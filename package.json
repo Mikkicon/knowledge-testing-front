@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "google-maps-react": "^2.0.2",
+    "history": "^4.9.0",
     "jest": "^24.7.1",
     "jshint": "^2.10.2",
     "react": "^16.8.6",

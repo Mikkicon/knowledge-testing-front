@@ -4,9 +4,19 @@ class Register extends Component {
   render() {
     return (
       <div>
-        <ul>
-          <li>Hello</li>
-        </ul>
+        <div className="loginCont">
+          <label>E-Mail</label>
+
+          <input
+            autoComplete="off"
+            className="textInput"
+            type="email"
+            id="mail"
+          />
+          <button className="customBtn green auth" type="submit">
+            Register
+          </button>
+        </div>
       </div>
     );
   }

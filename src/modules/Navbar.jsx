@@ -8,11 +8,13 @@ class Navbar extends Component {
         <div className="nav">
           <div className="menuItem dropDown">
             <div className="home">
-              <b className="menuCarret" />
+              <b className="carret menu" />
             </div>
-            <Link to="/" className="subMenu">
-              Tests
-            </Link>
+            <div className="subMenu">
+              <Link to="/">Tests</Link>
+              <hr />
+              <Link to="/contacts">Contacts</Link>
+            </div>
           </div>
           <Link className="menuItem" to="/login">
             <div>Login</div>
@@ -20,8 +22,8 @@ class Navbar extends Component {
           <Link className="menuItem" to="/register">
             <div>Signup</div>
           </Link>
-          <Link className="menuItem" to="/test">
-            <div>Test</div>
+          <Link className="menuItem" to="/me/">
+            <div>Me</div>
           </Link>
           <div className="burger">
             <input type="checkbox" /> <span /> <span />
