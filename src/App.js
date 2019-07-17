@@ -1,20 +1,16 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import { Landing, Test, Login, Register, Navbar } from "./moduleExports";
-import "./styles/test.css";
-import "./styles/navbar.css";
-import "./styles/landing.css";
-import "./styles/filterBadge.css";
-import User from "./modules/auth/User";
-import Contacts from "./modules/other/Contacts";
-/*
-/users
-/users/:id
-/login
-/resgister
-/tests
-/tests/:id
-*/
+import {
+  Landing,
+  Test,
+  Login,
+  Register,
+  Navbar,
+  User,
+  Contacts,
+  FAQ
+} from "./modules/moduleExports.js";
+import "./styles/App.scss";
 
 class App extends Component {
   constructor(props) {
@@ -43,6 +39,7 @@ class App extends Component {
           <Route path="/test" component={() => <Test />} />
           <Route path="/register" component={() => <Register />} />
           <Route path="/contacts" component={() => <Contacts />} />
+          <Route path="/faq" component={() => <FAQ />} />
           <Route path="/me" component={() => <User testnet={testnet} />} />
         </BrowserRouter>
       </React.Fragment>

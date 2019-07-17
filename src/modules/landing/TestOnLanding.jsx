@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import JS from "../../media/js.png";
-import CPP from "../../media/cpp.jpg";
-import CS from "../../media/cs.jpg";
-import JAVA from "../../media/java.jpg";
 import { Link } from "react-router-dom";
+import { JS, CPP, CS, JAVA } from "../moduleExports.js";
 
 class TestOnLanding extends Component {
   getPicture = title => {

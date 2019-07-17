@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { TestOnLanding, FilterBadge } from "../../moduleExports";
+import { TestOnLanding, FilterBadge, Footer } from "../moduleExports.js";
 import { isNumber } from "util";
-import Footer from "./Footer";
 
 class Landing extends Component {
   constructor(props) {

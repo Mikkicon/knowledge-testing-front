@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-import DA from "../../media/default-avatar.png";
-import TRAVEL from "../../media/travel.jpg";
-import "../../styles/contacts.css";
-import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import { DA, TRAVEL } from "../moduleExports.js";
+// import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
 class Contacts extends Component {
   render() {
-    const mapStyles = {
-      width: "100%",
-      height: "100%"
-    };
+    // const mapStyles = {
+    //   width: "100%",
+    //   height: "100%"
+    // };
     return (
       <div>
         <div className="whatWeDoCont">
@@ -86,6 +84,7 @@ class Contacts extends Component {
     );
   }
 }
-export default GoogleApiWrapper({
-  apiKey: "AIzaSyDPhTs3oNuTxjF18uaYFC8tKtNeRhAgxFI"
-})(Contacts);
+// export default GoogleApiWrapper({
+//   apiKey: "AIzaSyDPhTs3oNuTxjF18uaYFC8tKtNeRhAgxFI"
+// })(Contacts);
+export default Contacts;

@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import "../../styles/auth.css";
 import bcrypt from "bcryptjs";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mail: null,
-      pass: null,
+      mail: "",
+      pass: "",
       loading: false
     };
     this.login = this.login.bind(this);
@@ -33,6 +32,7 @@ class Login extends Component {
       })
     }).then(() => this.props.history.push("/"));
   }
+
   render() {
     const { mail, pass, loading } = this.state;
     return (
