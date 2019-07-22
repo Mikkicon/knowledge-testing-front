@@ -4,8 +4,8 @@ $borderWidth: 1px;
 $green: #36af46;
 $greenHover: #2b8f38;
 $blue: #1d45b4;
+$blue2: #77f;
 $blueHover: #366eaf;
-
 /* --------------------------------AUTH-------------------------------- */
 
 .loginCont {
@@ -150,7 +150,7 @@ a {
   width: 50px;
   height: 50px;
   border-radius: 100%;
-  background: #77f;
+  background: $blue2;
   color: #fff;
   justify-content: center;
 }
@@ -356,7 +356,7 @@ a {
   width: 100%;
   top: 0;
   height: 50px;
-  background: #77f;
+  background: $blue2;
   position: fixed;
   display: flex;
   align-items: center;
@@ -370,6 +370,10 @@ a {
   display: flex;
   justify-content: center;
   border-right: $borderWidth solid #fff;
+}
+.menuItemPhone,
+.subMenuPhone {
+  display: none;
 }
 .carret {
   position: absolute;
@@ -390,11 +394,11 @@ a {
   padding: 10px 0 0 0;
 }
 .home {
-  margin: 0 auto;
+  position: relative;
 }
 .home::before {
   content: "";
-  left: 10px;
+  margin-left: -15px;
   top: 10px;
   position: absolute;
   border-bottom: 15px solid #fff;
@@ -407,7 +411,7 @@ a {
   position: absolute;
   width: 20px;
   height: 15px;
-  left: 15px;
+  margin-left: -10px;
   top: 20px;
   background: #fff;
   transition: all 0.3s;
@@ -453,19 +457,32 @@ a {
 }
 .foldNav {
   width: 100%;
-  height: 0;
   left: 0;
-  top: 50px;
-  background: #000;
+  margin-top: -300px;
   position: absolute;
   transition: all 0.3s;
 }
 .burger input:checked ~ .foldNav {
   width: 100%;
-  height: 300px;
-  background: #222;
+  top: 50px;
+  margin-top: 0;
+  background: $blue2;
   transition: all 0.3s;
 }
+.burger input:checked ~ .foldNav > * {
+  display: block;
+}
+.burger input:checked ~ .foldNav > * > * {
+  display: block;
+}
+.menuItemPhone {
+  display: none;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #fff;
+}
+
 .burger span {
   display: block;
   width: 33px;
@@ -567,7 +584,7 @@ i {
 }
 
 .answers input:checked ~ .checkmark {
-  background-color: #77f;
+  background-color: $blue2;
 }
 
 .checkmark:after {
@@ -686,7 +703,7 @@ i {
   padding-left: 25px;
 }
 .navigate > span:hover {
-  background: #77f;
+  background: $blue2;
 }
 .navigate > span.end:hover {
   background: #0b0;
@@ -726,6 +743,9 @@ i {
   }
   .nav {
     justify-content: flex-end;
+  }
+  .menuItem {
+    display: none;
   }
 
   .userCont {

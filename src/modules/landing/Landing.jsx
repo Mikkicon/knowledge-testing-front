@@ -16,7 +16,7 @@ class Landing extends Component {
       tests: [],
       testnetNotification: this.props.testnet && "Testnet"
     };
-
+    this.timeoutHandler = null;
     this.loadPage = this.loadPage.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.checkParams = this.checkParams.bind(this);
@@ -24,9 +24,15 @@ class Landing extends Component {
     this.searchManager = this.searchManager.bind(this);
   }
   componentDidMount() {
+    this.timeoutHandler = setTimeout(
+      () => this.props.testnet && this.setState({ testnetNotification: null }),
+      3000
+    );
     this.loadPage(0);
   }
-
+  componentWillUnmount() {
+    clearTimeout(this.timeoutHandler);
+  }
   searchManager(searchOrFilterInput) {
     let { hardness, searchQuery } = searchOrFilterInput;
     let selectedHardneses = new Set(this.state.selectedHardneses);
@@ -129,14 +135,11 @@ class Landing extends Component {
       filteredTests,
       testnetNotification
     } = this.state;
-    setTimeout(
-      () => this.props.testnet && this.setState({ testnetNotification: null }),
-      3000
-    );
+
     return (
       <div className="landingCont">
         <div className="allTestsPreviewCont">
-          <h3>{testnetNotification}</h3>
+          <h1>{testnetNotification}</h1>
           <input
             onChange={e => this.searchManager({ searchQuery: e.target.value })}
             className="textInput search"
