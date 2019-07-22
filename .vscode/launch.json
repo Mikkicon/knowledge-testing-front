@@ -21,7 +21,7 @@
       "type": "node",
       "request": "launch",
       "name": "Parallel sorting",
-      "program": "/Users/mp/JSProjects/a/Promises/ParallelSort.js"
+      "program": "/Users/mp/JSProjects/a/functionsDrawer/scripts/main.js"
     }
   ]
 }

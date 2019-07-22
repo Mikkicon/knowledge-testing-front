@@ -35,21 +35,35 @@ $blueHover: #366eaf;
   height: 200px;
   margin: auto;
 }
-.avatarCont > button {
+.avatarCont {
   width: 200px;
   margin: auto;
 }
+.avatarCont > * > button {
+  width: 200px;
+  margin: auto;
+}
+.avatarCont > * > input {
+  opacity: 0;
+  position: absolute;
+  width: 180px;
+  height: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+
 .avatarCont {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 .userCont > button {
   width: 200px;
   margin: 20px auto 0;
 }
 .userCont {
+  position: relative;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -58,10 +72,20 @@ $blueHover: #366eaf;
   width: 400px;
   margin: 20px auto 20px auto;
 }
-
+.contLabel {
+  position: absolute;
+  top: -10px;
+  background: #000;
+  padding: 0 10px;
+}
 .userPageCont hr {
   border-bottom: $borderWidth solid #fff;
   margin: 30px 0;
+}
+.userPageCont > header {
+  font-size: 300%;
+  font-weight: bold;
+  text-align: center;
 }
 
 /* --------------------------------CONTACTS-------------------------------- */
@@ -427,8 +451,8 @@ a {
   opacity: 0;
   z-index: 2;
 }
-.leftMenu {
-  width: 0;
+.foldNav {
+  width: 100%;
   height: 0;
   left: 0;
   top: 50px;
@@ -436,9 +460,10 @@ a {
   position: absolute;
   transition: all 0.3s;
 }
-.burger input:checked ~ .leftMenu {
-  width: 200px;
-  height: 200px;
+.burger input:checked ~ .foldNav {
+  width: 100%;
+  height: 300px;
+  background: #222;
   transition: all 0.3s;
 }
 .burger span {
@@ -699,6 +724,10 @@ i {
   .burger {
     display: block;
   }
+  .nav {
+    justify-content: flex-end;
+  }
+
   .userCont {
     width: 80%;
   }
@@ -711,10 +740,13 @@ i {
     padding: 20px 10px;
   }
   .customBtn {
-    width: auto;
+    // width: auto;
   }
   .auth {
     padding: 20px 10px;
+  }
+  .loginCont {
+    width: 80%;
   }
 }
 

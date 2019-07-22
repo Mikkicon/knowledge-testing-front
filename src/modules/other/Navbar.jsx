@@ -22,13 +22,13 @@ class Navbar extends Component {
           <Link className="menuItem" to="/register">
             <div>Signup</div>
           </Link>
-          <Link className="menuItem" to="/me/">
+          <Link className="menuItem" to="/user/">
             <div>Me</div>
           </Link>
           <div className="burger">
             <input type="checkbox" /> <span /> <span />
             <span />
-            <div className="leftMenu" />
+            <div className="foldNav" />
           </div>
         </div>
       </React.Fragment>

@@ -40,7 +40,7 @@ class App extends Component {
           <Route path="/register" component={() => <Register />} />
           <Route path="/contacts" component={() => <Contacts />} />
           <Route path="/faq" component={() => <FAQ />} />
-          <Route path="/me" component={() => <User testnet={testnet} />} />
+          <Route path="/user/" component={() => <User testnet={testnet} />} />
         </BrowserRouter>
       </React.Fragment>
     );

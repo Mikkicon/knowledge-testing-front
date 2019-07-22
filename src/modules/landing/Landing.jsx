@@ -13,7 +13,8 @@ class Landing extends Component {
       filteredTests: [],
       searchQuery: "",
       testsData: [],
-      tests: []
+      tests: [],
+      testnetNotification: this.props.testnet && "Testnet"
     };
 
     this.loadPage = this.loadPage.bind(this);
@@ -122,10 +123,20 @@ class Landing extends Component {
   }
 
   render() {
-    const { currentPage, pageAmount, filteredTests } = this.state;
+    const {
+      currentPage,
+      pageAmount,
+      filteredTests,
+      testnetNotification
+    } = this.state;
+    setTimeout(
+      () => this.props.testnet && this.setState({ testnetNotification: null }),
+      3000
+    );
     return (
       <div className="landingCont">
         <div className="allTestsPreviewCont">
+          <h3>{testnetNotification}</h3>
           <input
             onChange={e => this.searchManager({ searchQuery: e.target.value })}
             className="textInput search"

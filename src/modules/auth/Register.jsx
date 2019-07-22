@@ -5,22 +5,25 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mail: ""
+      mail: "",
+      info: ""
     };
   }
   register(mail) {
     console.log("Sending: ", mail);
+    this.setState({ info: "Loading..." });
     fetch("http://localhost:3000/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        mail: mail
+        mail
       })
-    });
-    // .then(() => this.props.history.push("/"));
+    })
+      .then(() => this.setState({ info: "" }))
+      .catch(error => console.log(error));
   }
   render() {
-    const { mail } = this.state;
+    const { mail, info } = this.state;
     return (
       <div>
         <div className="loginCont">
@@ -40,6 +43,7 @@ class Register extends Component {
           >
             Register
           </button>
+          <h1>{info}</h1>
         </div>
       </div>
     );

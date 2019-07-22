@@ -8,7 +8,7 @@ class Login extends Component {
     this.state = {
       mail: "",
       pass: "",
-      loading: false
+      info: ""
     };
     this.login = this.login.bind(this);
     this.encryptPass = this.encryptPass.bind(this);
@@ -20,21 +20,29 @@ class Login extends Component {
     return hash;
   }
 
-  login(mail, pass) {
+  async login(mail, pass) {
     console.log("Sending: ", mail, pass);
     let encryptedPass = this.encryptPass(pass);
-    fetch("http://localhost:3000/login", {
+    let response = await fetch("http://localhost:3000/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         mail: mail,
         pass: encryptedPass
       })
-    }).then(() => this.props.history.push("/"));
+    });
+    if (response.status === 200) {
+      let { token } = await response.json();
+      !sessionStorage.getItem("token") &&
+        sessionStorage.setItem("token", token);
+      this.props.history.push("/");
+    } else {
+      this.setState({ info: "Authentication failed" });
+    }
   }
 
   render() {
-    const { mail, pass, loading } = this.state;
+    const { mail, pass, info } = this.state;
     return (
       <div className="loginCont">
         <label>E-Mail</label>
@@ -55,7 +63,7 @@ class Login extends Component {
         />
         <button
           onClick={() => {
-            this.setState({ loading: true });
+            this.setState({ info: "Loading..." });
             this.login(mail, pass);
           }}
           className="customBtn green auth"
@@ -65,7 +73,7 @@ class Login extends Component {
         </button>
         <br />
         <br />
-        {loading ? <h1>Loading...</h1> : ""}
+        <h1>{info}</h1>
       </div>
     );
   }

@@ -5,6 +5,7 @@ class Statistics extends Component {
     super(props);
     this.state = {
       xOffset: 20,
+      yOffset: 10,
       scale: 1.5,
       dataInterval: 20
     };
@@ -64,6 +65,7 @@ class Statistics extends Component {
         i * dataInterval,
         bottom - (grades[i - 1] / 10) * dataInterval + 10
       );
+      ctx.fillText(i, i * dataInterval, bottom);
       ctx.lineTo(
         i * dataInterval + dataInterval,
         bottom - (grades[i] / 10) * dataInterval + 10
