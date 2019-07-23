@@ -21,6 +21,7 @@ class Landing extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.checkParams = this.checkParams.bind(this);
     this.filterResult = this.filterResult.bind(this);
+    this.sortManager = this.sortManager.bind(this);
     this.searchManager = this.searchManager.bind(this);
   }
   componentDidMount() {
@@ -33,6 +34,16 @@ class Landing extends Component {
   componentWillUnmount() {
     clearTimeout(this.timeoutHandler);
   }
+
+  sortManager(sortBy, direction) {
+    let filteredTests = [...this.state.filteredTests];
+    filteredTests.sort((testA, testB) =>
+      testA[sortBy] > testB[sortBy] ? 1 * direction : -1 * direction
+    );
+    console.log(filteredTests);
+    this.setState({ filteredTests });
+  }
+
   searchManager(searchOrFilterInput) {
     let { hardness, searchQuery } = searchOrFilterInput;
     let selectedHardneses = new Set(this.state.selectedHardneses);
@@ -174,7 +185,10 @@ class Landing extends Component {
           </button>
         </div>
 
-        <FilterBadge searchManager={this.searchManager} />
+        <FilterBadge
+          sortManager={this.sortManager}
+          searchManager={this.searchManager}
+        />
         <Footer />
       </div>
     );

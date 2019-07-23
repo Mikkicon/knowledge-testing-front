@@ -234,7 +234,13 @@ a {
   overflow: scroll;
   display: block;
 }
-
+.sortBtn > b {
+  content: "";
+  position: absolute;
+  border-top: 10px solid #000;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
 /* --------------------------------LANDING-------------------------------- */
 .landingCont {
   text-align: center;
@@ -721,6 +727,56 @@ i {
   transform: rotate(45deg);
   margin: 0 0 10px 15px;
   padding: 10px 5px;
+}
+
+/* --------------------------------SLIDER-------------------------------- */
+
+.sliderScreen {
+  width: 450px;
+  height: 450px;
+  margin: auto;
+  display: flex;
+  background: #666;
+  position: relative;
+}
+.sliderSlider {
+  overflow: hidden;
+  display: flex;
+  background: #666;
+}
+#row {
+  display: flex;
+  transition: 0.3s all;
+}
+.sliderCircle {
+  background: #77f;
+  opacity: 0.8;
+  margin-left: -80px;
+  top: 40%;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 2px solid #fff;
+  position: absolute;
+  display: block;
+  cursor: pointer;
+}
+
+.sliderRight {
+  transform: rotate(-45deg);
+  right: -100px;
+}
+
+.sliderLeft {
+  transform: rotate(135deg);
+  margin-left: -100px;
+}
+
+.sliderSliderImage > img {
+  width: 400px;
+}
+.sliderSliderImage {
+  margin: auto 25px;
 }
 
 @media (max-width: 320px) {

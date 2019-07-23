@@ -11,6 +11,7 @@ import Footer from "./landing/Footer";
 import User from "./auth/User";
 import Contacts from "./other/Contacts";
 import FAQ from "./other/FAQ.jsx";
+import Slider from "./other/Slider.jsx";
 import DA from "../media/default-avatar.png";
 import JS from "../media/js.png";
 import CPP from "../media/cpp.jpg";
@@ -31,6 +32,7 @@ export {
   User,
   Contacts,
   FAQ,
+  Slider,
   DA,
   JS,
   CPP,

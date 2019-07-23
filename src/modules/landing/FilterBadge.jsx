@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 
 class FilterBadge extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ascending: 1
+    };
+  }
   render() {
+    const { ascending } = this.state;
     return (
       <div>
         <div className="filterBadge">
@@ -47,8 +54,28 @@ class FilterBadge extends Component {
           </div>
           <hr />
           <div>
+            Sort
+            <br />
             <button
-              onClick={() => localStorage.clear()}
+              className="sortBtn"
+              onClick={() =>
+                this.setState(
+                  state => ({ ascending: state.ascending * -1 }),
+                  () => this.props.sortManager("title", ascending)
+                )
+              }
+            >
+              Name
+              <b style={~ascending ? { transform: "rotate(180deg)" } : {}} />
+            </button>
+            {/* <button onClick={() => this.props.sortManager("")}>
+              Questions №
+            </button> */}
+          </div>
+          <hr />
+          <div>
+            <button
+              onClick={() => sessionStorage.clear()}
               className="customBtn green"
             >
               Clear cached tests
