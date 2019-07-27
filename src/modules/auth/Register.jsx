@@ -19,7 +19,8 @@ class Register extends Component {
         mail
       })
     })
-      .then(() => this.setState({ info: "" }))
+      .then(response => response.text())
+      .then(result => this.setState({ info: result }))
       .catch(error => console.log(error));
   }
   render() {
@@ -31,7 +32,6 @@ class Register extends Component {
 
           <input
             onChange={({ target }) => this.setState({ mail: target.value })}
-            autoComplete="off"
             className="textInput"
             type="email"
             id="mail"

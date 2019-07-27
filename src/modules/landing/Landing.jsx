@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TestOnLanding, FilterBadge, Footer } from "../moduleExports.js";
+import { TestOnLanding, Filter, Footer } from "../moduleExports.js";
 import { isNumber } from "util";
 
 class Landing extends Component {
@@ -185,7 +185,7 @@ class Landing extends Component {
           </button>
         </div>
 
-        <FilterBadge
+        <Filter
           sortManager={this.sortManager}
           searchManager={this.searchManager}
         />

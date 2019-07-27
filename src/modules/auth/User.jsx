@@ -16,7 +16,7 @@ class User extends Component {
   }
 
   componentDidMount() {
-    sessionStorage.setItem("login", "testLogin");
+    // sessionStorage.setItem("login", "testLogin");
   }
   handleAvatarUpload([avatar]) {
     console.log(avatar);
@@ -25,12 +25,12 @@ class User extends Component {
   }
 
   updateInfo(info) {
-    let login = sessionStorage.getItem("login");
+    let mail = sessionStorage.getItem("mail");
     Object.keys(info).filter(a => !info[a] && delete info[a]);
     let body = JSON.stringify(info);
     console.log("Sending: ", body);
-
-    fetch(`http://localhost:3000/user/${login}`, {
+    if (!mail) return;
+    fetch(`http://localhost:3000/user/${mail}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body
@@ -94,7 +94,7 @@ class User extends Component {
             id="oldPass"
           />
           <button
-            disabled={!oldPass}
+            disabled={!(oldPass && (mail || pass))}
             onClick={() =>
               this.updateInfo({
                 mail: mail,

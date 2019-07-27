@@ -149,7 +149,7 @@ class Test extends Component {
             name="answer"
           />
           <p>{answer}</p>
-          <span className="checkmark" />
+          <span className="round checkmark" />
         </label>
       ));
 

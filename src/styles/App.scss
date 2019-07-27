@@ -226,18 +226,23 @@ a {
   transition-duration: 0.3s;
 }
 .filterToggle:checked ~ .filterMenu {
-  width: 100%;
+  width: 500px;
   height: 30%;
-  background: #222;
+  border-top: 3px solid #fff;
   bottom: 0;
+  right: 0;
   position: fixed;
   overflow: scroll;
   display: block;
+  background: $blue;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 .sortBtn > b {
   content: "";
+  margin: auto 15px;
   position: absolute;
-  border-top: 10px solid #000;
+  border-top: 10px solid #fff;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
@@ -586,7 +591,9 @@ i {
   height: 25px;
   width: 25px;
   background-color: #eee;
-  border-radius: 50%;
+}
+.round {
+  border-radius: 100%;
 }
 
 .answers input:checked ~ .checkmark {
@@ -807,6 +814,40 @@ i {
   .userCont {
     width: 80%;
   }
+  .sliderSliderImage > img {
+    width: 200px;
+  }
+  .sliderSliderImage {
+    margin: auto 80px;
+  }
+  .sliderScreen {
+    width: 95%;
+    height: 95%;
+  }
+  .sliderRight {
+    transform: rotate(-45deg);
+    right: 10px;
+  }
+  .answers > label {
+    border: 1px solid #fff;
+  }
+  .sliderCircle {
+    z-index: 2;
+  }
+  .sliderLeft {
+    transform: rotate(135deg);
+    margin-left: 10px;
+  }
+
+  .filterMenu hr {
+    display: none;
+  }
+  .filterMenu label {
+    padding-left: 0;
+  }
+  .filterToggle:checked ~ .filterMenu {
+    width: 100%;
+  }
 }
 
 @media (min-width: 600px) {
@@ -815,9 +856,7 @@ i {
   .pagination {
     padding: 20px 10px;
   }
-  .customBtn {
-    // width: auto;
-  }
+
   .auth {
     padding: 20px 10px;
   }

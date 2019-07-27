@@ -11,12 +11,16 @@ class Slider extends Component {
     this.slidePage = this.slidePage.bind(this);
   }
   slidePage(param) {
+    const interval = window.document.getElementsByClassName("sliderSlider")[0]
+      .offsetWidth;
+    console.log(interval);
+
     this.setState(
       state => ({ currentPic: state.currentPic + param }),
       () =>
         (window.document.getElementById(
           "row"
-        ).style.transform = `translate(${this.state.currentPic * -450}px)`)
+        ).style.transform = `translate(${this.state.currentPic * -interval}px)`)
     );
   }
 
