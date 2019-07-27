@@ -246,6 +246,29 @@ a {
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
+/* --------------------------------LEFTMENU-------------------------------- */
+
+.landingCont > .burger {
+  background: $blue2;
+  width: 30px;
+  z-index: 2;
+  position: fixed;
+  padding: 10px 10px 10px 20px;
+  margin-left: -10px;
+  display: block;
+}
+
+.leftMenuCont {
+  position: absolute;
+  background: rgba($color: $blue2, $alpha: 0.5);
+  margin-left: -500px;
+  transition: all 0.3s;
+}
+.landingCont > .burger > input:checked ~ .leftMenuCont {
+  margin-left: -10px;
+  transition: all 0.3s;
+}
+
 /* --------------------------------LANDING-------------------------------- */
 .landingCont {
   text-align: center;

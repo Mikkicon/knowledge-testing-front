@@ -1,5 +1,6 @@
 import App from "../App";
 import Landing from "./landing/Landing";
+import LeftMenu from "./landing/LeftMenu";
 import Test from "./testView/Test";
 import Login from "./auth/Login";
 import Navbar from "./other/Navbar";
@@ -21,6 +22,7 @@ import TRAVEL from "../media/travel.jpg";
 export {
   App,
   Landing,
+  LeftMenu,
   Test,
   Login,
   Navbar,

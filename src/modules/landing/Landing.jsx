@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TestOnLanding, Filter, Footer } from "../moduleExports.js";
+import { TestOnLanding, Filter, Footer, LeftMenu } from "../moduleExports.js";
 import { isNumber } from "util";
 
 class Landing extends Component {
@@ -149,6 +149,7 @@ class Landing extends Component {
 
     return (
       <div className="landingCont">
+        <LeftMenu />
         <div className="allTestsPreviewCont">
           <h1>{testnetNotification}</h1>
           <input
@@ -157,7 +158,6 @@ class Landing extends Component {
             type="text"
             placeholder="Search..."
           />
-
           {filteredTests.map((test, index) => (
             <TestOnLanding title={test.title} id={index} key={index} />
           ))}
@@ -189,6 +189,7 @@ class Landing extends Component {
           sortManager={this.sortManager}
           searchManager={this.searchManager}
         />
+
         <Footer />
       </div>
     );
