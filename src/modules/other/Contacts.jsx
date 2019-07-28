@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { DA, TRAVEL } from "../moduleExports.js";
+import {
+  DA,
+  TRAVEL,
+  ME,
+  FontAwesomeIcon,
+  faMailBulk,
+  faPhone,
+  faGlobe
+} from "../moduleExports.js";
 // import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
 class Contacts extends Component {
@@ -11,35 +19,46 @@ class Contacts extends Component {
     return (
       <div>
         <div className="whatWeDoCont">
-          <div className="whatWeDoLeft">
-            <p>
-              This site provides free and premium tests to test your knowledge
-              in some spheres of programming
-            </p>
-            <h3>Our contact information:</h3>
-            <a href="mailto:mikkicon@gmail.com">E-Mail</a>
-            <a href="tel:+380939167956">+380939167956</a>
-            <a href="https://www.linkedin.com/in/mikhail-p-85b181106/">
-              LinkedIN
-            </a>
-          </div>
+          <p>
+            This site provides free and premium tests to test your knowledge in
+            some spheres of programming
+          </p>
+          <br />
+          <h3>Our contact information:</h3>
+          <br />
           <div className="whatWeDoRight">
-            <p>
-              This site provides free and premium tests to test your knowledge
-              in some spheres of programming
-            </p>
-            <h3>Our contact information:</h3>
-            <a href="mailto:mikkicon@gmail.com">E-Mail</a>
-            <a href="tel:+380939167956">+380939167956</a>
-            <a href="https://www.linkedin.com/in/mikhail-p-85b181106/">
-              LinkedIN
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="mailto:mikkicon@gmail.com"
+            >
+              <FontAwesomeIcon icon={faMailBulk} /> mikkicon@gmail.com
+            </a>
+            <br />
+
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="tel:+380939167956"
+            >
+              <FontAwesomeIcon icon={faPhone} /> +380939167956
+            </a>
+            <br />
+
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/in/mikhail-p-85b181106/"
+            >
+              <FontAwesomeIcon icon={faGlobe} />{" "}
+              https://www.linkedin.com/in/mikhail-p-85b181106/
             </a>
           </div>
         </div>
         <div className="galleryContainer">
           <div className="gallery">
             <a target="_blank" rel="noopener noreferrer" href={DA}>
-              <img src={TRAVEL} alt="js" />
+              <img src={ME} alt="Misha" />
             </a>
             <div className="desc">
               <b>CEO</b>
@@ -47,7 +66,7 @@ class Contacts extends Component {
           </div>
           <div className="gallery">
             <a target="_blank" rel="noopener noreferrer" href={DA}>
-              <img src={DA} alt="cpp" />
+              <img src={ME} alt="Misha" />
             </a>
             <div className="desc">
               <b>CTO</b>
@@ -55,7 +74,7 @@ class Contacts extends Component {
           </div>
           <div className="gallery">
             <a target="_blank" rel="noopener noreferrer" href={DA}>
-              <img src={DA} alt="cs" />
+              <img src={ME} alt="Misha" />
             </a>
             <div className="desc">
               <b>CDO</b>
@@ -63,10 +82,18 @@ class Contacts extends Component {
           </div>
           <div className="gallery">
             <a target="_blank" rel="noopener noreferrer" href={DA}>
-              <img src={DA} alt="java" />
+              <img src={ME} alt="Misha" />
             </a>
             <div className="desc">
               <b>CMO</b>
+            </div>
+          </div>
+          <div className="gallery">
+            <a target="_blank" rel="noopener noreferrer" href={DA}>
+              <img src={TRAVEL} alt="Different size" />
+            </a>
+            <div className="desc">
+              <b>Different size</b>
             </div>
           </div>
         </div>
@@ -80,29 +107,31 @@ class Contacts extends Component {
             <Marker position={{ lat: 48.0, lng: -122.0 }} />
           </Map> */}
         </div>
-        <div id="fb-root" />
-        <div
-          className="fb-share-button"
-          data-href="https://facebook.com/"
-          data-layout="button_count"
-          data-size="large"
-        >
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffacebook.com%2F&amp;src=sdkpreparse"
-            className="fb-xfbml-parse-ignore"
+        <div className="shares">
+          {/* <div id="fb-root" /> */}
+          <div
+            className="fb-share-button"
+            data-href="https://facebook.com/"
+            data-layout="button_count"
+            data-size="large"
           >
-            Поделиться
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffacebook.com%2F&amp;src=sdkpreparse"
+              className="fb-xfbml-parse-ignore"
+            >
+              Поделиться
+            </a>
+          </div>
+          <a
+            href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw"
+            className="twitter-follow-button"
+            data-show-count="false"
+          >
+            Follow @UniTest
           </a>
         </div>
-        <a
-          href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw"
-          className="twitter-follow-button"
-          data-show-count="false"
-        >
-          Follow @UniTest
-        </a>
       </div>
     );
   }

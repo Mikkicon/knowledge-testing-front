@@ -1,5 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import {
+  faUser,
+  faLock,
+  faPhone,
+  faPuzzlePiece,
+  faLockOpen,
+  faUserLock,
+  FontAwesomeIcon
+} from "../moduleExports.js";
 
 class Navbar extends Component {
   render() {
@@ -11,46 +20,65 @@ class Navbar extends Component {
           </Link>
           <div className="menuItem dropDown">
             <div>
-              Auth
+              <FontAwesomeIcon icon={faUserLock} /> Auth
               <b className="carret menu" />
             </div>
 
             <div className="subMenu">
               <Link to="/login">
-                <p>Login</p>
+                <p>
+                  <FontAwesomeIcon icon={faLock} /> Login
+                </p>
               </Link>
               <hr />
               <Link to="/register">
-                <p>Signup</p>
+                <p>
+                  <FontAwesomeIcon icon={faLockOpen} /> Signup
+                </p>
               </Link>
             </div>
           </div>
 
           <Link className="menuItem" to="/contacts">
-            <div>Contacts</div>
+            <div>
+              <FontAwesomeIcon icon={faPhone} /> Contacts
+            </div>
           </Link>
 
           <Link className="menuItem" to="/user/">
-            <div>Me</div>
+            <div>
+              <FontAwesomeIcon icon={faUser} /> Me
+            </div>
           </Link>
+          <div className="uniTestName">UniTest</div>
           <div className="burger">
             <input id="navbarToggle" type="checkbox" /> <span /> <span />
             <span />
             <div className="foldNav">
               <Link className="menuItemPhone" to="/">
-                Tests
+                <div>
+                  <FontAwesomeIcon icon={faPuzzlePiece} /> Tests
+                </div>
               </Link>
               <Link className="menuItemPhone" to="/contacts">
-                Contacts
+                <div>
+                  <FontAwesomeIcon icon={faPhone} /> Contacts
+                </div>
               </Link>
               <Link className="menuItemPhone" to="/login">
-                <div>Login</div>
+                <div>
+                  <FontAwesomeIcon icon={faLock} /> Login
+                </div>
               </Link>
               <Link className="menuItemPhone" to="/register">
-                <div>Signup</div>
+                <div>
+                  <FontAwesomeIcon icon={faLock} /> Signup
+                </div>
               </Link>
               <Link className="menuItemPhone" to="/user/">
-                <div>Me</div>
+                <div>
+                  <FontAwesomeIcon icon={faUser} /> Me
+                </div>
               </Link>
             </div>
           </div>

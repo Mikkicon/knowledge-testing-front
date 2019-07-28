@@ -27,7 +27,7 @@ class Landing extends Component {
   componentDidMount() {
     this.timeoutHandler = setTimeout(
       () => this.props.testnet && this.setState({ testnetNotification: null }),
-      3000
+      1000
     );
     this.loadPage(0);
   }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-
+import { faMailBulk, FontAwesomeIcon } from "../moduleExports.js";
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +28,9 @@ class Register extends Component {
     return (
       <div>
         <div className="loginCont">
-          <label>E-Mail</label>
+          <label>
+            <FontAwesomeIcon icon={faMailBulk} /> E-Mail
+          </label>
 
           <input
             onChange={({ target }) => this.setState({ mail: target.value })}

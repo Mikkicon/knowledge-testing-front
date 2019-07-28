@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { faMailBulk, faUserSecret, FontAwesomeIcon } from "../moduleExports.js";
 import bcrypt from "bcryptjs";
 
 class Login extends Component {
@@ -46,7 +47,9 @@ class Login extends Component {
     const { mail, pass, info } = this.state;
     return (
       <div className="loginCont">
-        <label>E-Mail</label>
+        <label>
+          <FontAwesomeIcon icon={faMailBulk} /> E-Mail
+        </label>
 
         <input
           onChange={({ target }) => this.setState({ mail: target.value })}
@@ -54,7 +57,9 @@ class Login extends Component {
           type="email"
           id="mail"
         />
-        <label>Password</label>
+        <label>
+          <FontAwesomeIcon icon={faUserSecret} /> Password
+        </label>
 
         <input
           onChange={({ target }) => this.setState({ pass: target.value })}

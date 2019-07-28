@@ -19,6 +19,24 @@ import CPP from "../media/cpp.jpg";
 import CS from "../media/cs.jpg";
 import JAVA from "../media/java.jpg";
 import TRAVEL from "../media/travel.jpg";
+import ME from "../media/me.JPG";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMailBulk,
+  faPhone,
+  faGlobe,
+  faBrain,
+  faCode,
+  faFlag,
+  faFilm,
+  faUserSecret,
+  faUser,
+  faLock,
+  faPuzzlePiece,
+  faLockOpen,
+  faUserLock
+} from "@fortawesome/free-solid-svg-icons";
+
 export {
   App,
   Landing,
@@ -40,5 +58,20 @@ export {
   CPP,
   CS,
   JAVA,
-  TRAVEL
+  TRAVEL,
+  ME,
+  FontAwesomeIcon,
+  faMailBulk,
+  faPhone,
+  faGlobe,
+  faBrain,
+  faCode,
+  faFlag,
+  faFilm,
+  faUserSecret,
+  faUser,
+  faLock,
+  faPuzzlePiece,
+  faLockOpen,
+  faUserLock
 };
