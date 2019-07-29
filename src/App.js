@@ -16,7 +16,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      testnet: true,
+      testnet: false,
       testList: []
     };
   }

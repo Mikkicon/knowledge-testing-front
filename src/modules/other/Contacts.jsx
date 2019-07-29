@@ -19,14 +19,16 @@ class Contacts extends Component {
     return (
       <div>
         <div className="whatWeDoCont">
-          <p>
-            This site provides free and premium tests to test your knowledge in
-            some spheres of programming
-          </p>
-          <br />
-          <h3>Our contact information:</h3>
-          <br />
           <div className="whatWeDoRight">
+            <div>
+              <p>
+                This site provides free and premium tests to test your knowledge
+                in some spheres of programming
+              </p>
+              <h2>Our contact information:</h2>
+            </div>
+            <br />
+            <br />
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -50,7 +52,7 @@ class Contacts extends Component {
               rel="noopener noreferrer"
               href="https://www.linkedin.com/in/mikhail-p-85b181106/"
             >
-              <FontAwesomeIcon icon={faGlobe} />{" "}
+              <FontAwesomeIcon icon={faGlobe} />
               https://www.linkedin.com/in/mikhail-p-85b181106/
             </a>
           </div>
@@ -108,7 +110,6 @@ class Contacts extends Component {
           </Map> */}
         </div>
         <div className="shares">
-          {/* <div id="fb-root" /> */}
           <div
             className="fb-share-button"
             data-href="https://facebook.com/"

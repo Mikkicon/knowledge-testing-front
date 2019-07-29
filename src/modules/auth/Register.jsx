@@ -45,7 +45,9 @@ class Register extends Component {
           >
             Register
           </button>
-          <h1>{info}</h1>
+          <h1>
+            {info} {info ? <FontAwesomeIcon icon={faMailBulk} /> : ""}{" "}
+          </h1>
         </div>
       </div>
     );

@@ -29,7 +29,7 @@ class Statistics extends Component {
     ctx.scale(scale, scale);
     ctx.lineWidth = 1;
 
-    let bottom = canvas.height / 1.5;
+    let bottom = canvas.height / 1.5 - 20;
     this.setState({ bottom });
 
     console.log("canvas.height", canvas.height);
@@ -49,26 +49,39 @@ class Statistics extends Component {
     return ctx;
   }
   async drawCanvasContent() {
-    const { values } = this.props;
+    // const { values } = this.props;
     const { dataInterval } = this.state;
 
     const canvas = document.getElementById("myCanvas");
     var ctx = await this.setupCanvas(canvas);
 
     let bottom = canvas.height / 1.5;
-    let grades = values || [100, 10, 70, 30, 100, 45, 65, 40, 20, 30];
+    console.log("VALUES: ");
+    const token = sessionStorage.getItem("token");
 
-    console.log(grades);
+    if (token) {
+      let raw = await fetch(`http://localhost:3000/users/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: token })
+      });
+      var tests = await raw.json();
+    } else {
+      console.log("No token to get user info");
+    }
 
-    for (let i = 1; i < grades.length; i++) {
+    console.log(tests);
+    for (let i = 0; i < tests.length; i++) {
+      ctx.fillText(tests[i].test_Id, i * dataInterval + dataInterval, bottom);
+    }
+    for (let i = 1; i < tests.length; i++) {
       ctx.moveTo(
         i * dataInterval,
-        bottom - (grades[i - 1] / 10) * dataInterval + 10
+        bottom - tests[i - 1].score * dataInterval - 20
       );
-      ctx.fillText(i, i * dataInterval, bottom);
       ctx.lineTo(
         i * dataInterval + dataInterval,
-        bottom - (grades[i] / 10) * dataInterval + 10
+        bottom - tests[i].score * dataInterval - 20
       );
     }
     ctx.stroke();

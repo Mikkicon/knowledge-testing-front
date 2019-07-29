@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import TestResults from "./TestResults";
 
 class Test extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      minutes: "0",
+      minutes: "00",
       seconds: "00",
       questionNumber: 1,
       id: window.location.pathname.slice(6),
@@ -61,7 +62,7 @@ class Test extends Component {
   componentDidMount() {
     const { id } = this.state;
     console.log(id);
-    // this.intervalHandle = setInterval(this.tick, 1000);
+    this.intervalHandle = setInterval(this.tick, 1000);
     if (!sessionStorage.hasOwnProperty(id))
       fetch("http://localhost:3000/tests/" + id)
         .then(rawTest => (rawTest ? rawTest.json() : console.log("REJECT")))
@@ -76,23 +77,25 @@ class Test extends Component {
     clearInterval(this.intervalHandle);
   }
   submit() {
+    const { id } = this.state;
     console.log(this.state.userAnswers);
-    console.log(
-      JSON.stringify({
-        answers: this.state.userAnswers,
-        time: this.secondsPassed
-      })
-    );
+    const body = {
+      answers: this.state.userAnswers,
+      time: this.secondsPassed
+    };
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      body.token = token;
+    }
+    console.log(body);
 
-    fetch("http://localhost:3000/tests/", {
+    fetch(`http://localhost:3000/tests/${id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        answers: this.state.userAnswers,
-        time: this.secondsPassed
-      })
+      body: JSON.stringify(body)
     })
-      .then(rawTest => console.log(rawTest))
+      .then(response => response.json())
+      .then(({ correct }) => this.setState({ correct }))
       .catch(err => console.log(err));
   }
 
@@ -123,7 +126,14 @@ class Test extends Component {
     this.setState({ userAnswers: a });
   }
   render() {
-    const { minutes, seconds, questionNumber, userAnswers, id } = this.state;
+    const {
+      minutes,
+      seconds,
+      questionNumber,
+      userAnswers,
+      id,
+      correct
+    } = this.state;
 
     let { title, questions, answers } = sessionStorage.hasOwnProperty(id)
       ? JSON.parse(sessionStorage.getItem(id))
@@ -159,7 +169,7 @@ class Test extends Component {
           className={
             index === questionNumber - 1
               ? "page current"
-              : userAnswers[index]
+              : userAnswers[index] || userAnswers[index] === 0
               ? "page done"
               : "page"
           }
@@ -169,55 +179,61 @@ class Test extends Component {
     return (
       <div>
         <h2>{title}</h2>
-        <div className="container">
-          <div className="question">
-            {questionNumber}. {questions[questionNumber - 1]}
-          </div>
-          <div className="answers">{answersComp}</div>
-          <div className="testFooter">
-            <div className="pages">{pagesComp}</div>
-            <span className="divider" />
-            <div className="time">
-              <span className="clock" />
-              <span id="time">{minutes + ":" + seconds}</span>
+        {correct ? (
+          <TestResults time={this.secondsPassed} correct={correct} />
+        ) : (
+          <div className="container">
+            <div className="question">
+              {questionNumber}. {questions[questionNumber - 1]}
             </div>
-            <span className="divider" />
-            <div className="navigate">
-              <span
-                onClick={() =>
-                  this.setState({
-                    questionNumber: questionNumber > 1 ? questionNumber - 1 : 1
-                  })
-                }
-              >
-                <i className="arrow left" />
-              </span>
-              {questionNumber === questions.length ? (
-                <span
-                  onClick={() => {
-                    if (userAnswers.length === questions.length) {
-                      this.submit();
-                    } else {
-                      alert("Answer all questions please");
-                    }
-                  }}
-                >
-                  <i className="arrow end" />
-                </span>
-              ) : (
+            <div className="answers">{answersComp}</div>
+            <div className="testFooter">
+              <div className="pages">{pagesComp}</div>
+              <span className="divider" />
+              <div className="time">
+                <span className="clock" />
+                <span id="time">{minutes + ":" + seconds}</span>
+              </div>
+              <span className="divider" />
+              <div className="navigate">
                 <span
                   onClick={() =>
                     this.setState({
-                      questionNumber: questionNumber + 1
+                      questionNumber:
+                        questionNumber > 1 ? questionNumber - 1 : 1
                     })
                   }
                 >
-                  <i className="arrow right" />
+                  <i className="arrow left" />
                 </span>
-              )}
+                {questionNumber === questions.length ? (
+                  <span
+                    onClick={() => {
+                      if (userAnswers.length === questions.length) {
+                        clearInterval(this.intervalHandle);
+                        this.submit();
+                      } else {
+                        alert("Answer all questions please");
+                      }
+                    }}
+                  >
+                    <i className="arrow end" />
+                  </span>
+                ) : (
+                  <span
+                    onClick={() =>
+                      this.setState({
+                        questionNumber: questionNumber + 1
+                      })
+                    }
+                  >
+                    <i className="arrow right" />
+                  </span>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }

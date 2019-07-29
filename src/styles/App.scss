@@ -97,7 +97,7 @@ img {
 
 .shares {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   padding: 20px;
   margin-bottom: 20px;
   flex-wrap: wrap;
@@ -159,6 +159,7 @@ a {
   display: flex;
   z-index: 1;
   top: 90%;
+  box-shadow: 0 0 10px #000;
   right: 30px;
   width: 50px;
   height: 50px;
@@ -174,6 +175,9 @@ a {
 
 .filterIcon {
   display: inline;
+}
+.filterMenu p {
+  margin-left: 30px;
 }
 
 .filterIcon::before {
@@ -216,6 +220,7 @@ a {
 }
 .filterToggle:checked ~ .filterBadge {
   top: 60%;
+  border: 2px solid #fff;
 }
 .filterToggle:checked ~ .filterIcon::before {
   height: 20px;
@@ -240,14 +245,18 @@ a {
 }
 .filterToggle:checked ~ .filterMenu {
   width: 500px;
-  height: 30%;
+  height: 35%;
   border-top: 3px solid #fff;
   bottom: 0;
   right: 0;
   position: fixed;
-  overflow: scroll;
-  display: block;
-  background: $blue;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+  padding: 10px;
+  flex-wrap: wrap;
+  background: #77f;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
@@ -390,6 +399,7 @@ b {
   text-align: center;
   background: $blue;
   color: #fff;
+  margin-top: -5px;
   padding: 10px 0;
   display: block;
   width: 100%;
@@ -483,19 +493,28 @@ a {
   background: #fff;
   transition: all 0.3s;
 }
+
 .subMenu {
   position: absolute;
   top: 50px;
-  left: 50%;
+  left: 0;
+  width: 100%;
   display: none;
-  background: #000;
+  background: $blue2;
   transition: all 0.3s;
   border: $borderWidth solid $borderColor;
 }
 .subMenu > a {
+  background: $blue2;
+}
+.subMenu > a:hover {
+  background: $blue;
+}
+.subMenu > a {
   text-decoration: none;
   color: #fff;
-  margin: 15px 10px;
+  padding: 10px 5px;
+  border-bottom: 1px solid #fff;
 }
 .dropDown {
   position: relative;
@@ -578,7 +597,6 @@ body {
 }
 h2 {
   text-align: center;
-  z-index: 30;
 }
 p {
   margin: 0;
@@ -642,8 +660,8 @@ i {
 
 .checkmark {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 20%;
+  left: 5px;
   height: 25px;
   width: 25px;
   background-color: #eee;
@@ -754,6 +772,29 @@ i {
 .auth {
   margin: 50px auto auto;
 }
+
+/* ________RESULTS________ */
+
+.columns {
+  display: flex;
+  position: relative;
+  justify-content: space-evenly;
+}
+.columns .column {
+  display: flex;
+  flex-direction: column;
+}
+.columns .divider {
+  height: auto;
+}
+.resultsCont {
+  margin: auto;
+  background: #222;
+  padding: 20px;
+}
+.column > h3 {
+  margin: 0;
+}
 /* --------------------------------NAVBAR-------------------------------- */
 
 .navigate {
@@ -807,6 +848,10 @@ i {
   display: flex;
   background: #666;
 }
+.sliderSlider button:disabled {
+  background: #222;
+  opacity: 0.7;
+}
 #row {
   display: flex;
   transition: 0.3s all;
@@ -857,20 +902,6 @@ i {
   }
 }
 @media (max-width: 480px) {
-  .burger {
-    display: block;
-  }
-  .uniTestName {
-    display: block;
-    justify-self: left;
-  }
-  .nav {
-    justify-content: flex-end;
-  }
-  .menuItem {
-    display: none;
-  }
-
   .userCont {
     width: 80%;
   }
@@ -907,12 +938,29 @@ i {
   }
   .filterToggle:checked ~ .filterMenu {
     width: 100%;
+    padding: 0;
+  }
+  .filterMenu > div {
+    margin: auto;
   }
 }
 
 @media (min-width: 600px) {
 }
 @media (max-width: 600px) {
+  .burger {
+    display: block;
+  }
+  .uniTestName {
+    display: block;
+    justify-self: left;
+  }
+  .nav {
+    justify-content: flex-end;
+  }
+  .menuItem {
+    display: none;
+  }
   .pagination {
     padding: 20px 10px;
   }

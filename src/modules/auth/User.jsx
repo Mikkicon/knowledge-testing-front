@@ -9,15 +9,14 @@ class User extends Component {
       pass: "",
       avatar: null,
       oldPass: "",
-      response: ""
+      response: "",
+      tests: []
     };
     this.handleAvatarUpload = this.handleAvatarUpload.bind(this);
     this.updateInfo = this.updateInfo.bind(this);
   }
 
-  componentDidMount() {
-    // sessionStorage.setItem("login", "testLogin");
-  }
+  componentDidMount() {}
   handleAvatarUpload([avatar]) {
     console.log(avatar);
     // console.log(formData);
@@ -40,11 +39,11 @@ class User extends Component {
   }
 
   render() {
-    const { mail, pass, avatar, oldPass, response } = this.state;
+    const { mail, pass, avatar, oldPass, response, tests } = this.state;
     setTimeout(() => response && this.setState({ response: null }), 3000);
     return (
       <div className="userPageCont">
-        <header>{sessionStorage.getItem("login")}</header>
+        <header>{sessionStorage.getItem("login") || "Default"}</header>
         <div className="avatarCont">
           <img src={avatar || DA} alt="" />
           <br />
@@ -63,7 +62,7 @@ class User extends Component {
         <br />
         <div className="userCont">
           <label className="contLabel">Statistics</label>
-          <Statistics />
+          <Statistics values={tests} />
         </div>
         <div className="userCont">
           <label className="contLabel">Info</label>

@@ -159,7 +159,11 @@ class Landing extends Component {
             placeholder="Search..."
           />
           {filteredTests.map((test, index) => (
-            <TestOnLanding title={test.title} id={index} key={index} />
+            <TestOnLanding
+              title={test.title}
+              id={currentPage * 10 + index}
+              key={index}
+            />
           ))}
         </div>
 

@@ -21,7 +21,7 @@ class Filter extends Component {
             <br />
             <div className="answers">
               <label>
-                Easy
+                <p>Easy</p>
                 <input
                   onChange={() => this.props.searchManager({ hardness: 0 })}
                   type="checkbox"
@@ -31,7 +31,7 @@ class Filter extends Component {
                 <span className=" square checkmark" />
               </label>
               <label>
-                Medium
+                <p>Medium</p>
                 <input
                   onChange={() => this.props.searchManager({ hardness: 1 })}
                   type="checkbox"
@@ -41,7 +41,7 @@ class Filter extends Component {
                 <span className="checkmark" />
               </label>
               <label>
-                Hard
+                <p>Hard</p>
                 <input
                   onChange={() => this.props.searchManager({ hardness: 2 })}
                   type="checkbox"
@@ -59,7 +59,7 @@ class Filter extends Component {
             <br />
             <div className="answers">
               <label>
-                All
+                <p>All</p>
                 <input
                   onChange={() => this.props.searchManager({ hardness: 2 })}
                   type="checkbox"
@@ -69,7 +69,7 @@ class Filter extends Component {
                 <span className="checkmark square" />
               </label>
               <label>
-                Unsolved
+                <p>Unsolved</p>
                 <input
                   onChange={() => this.props.searchManager({ hardness: 2 })}
                   type="checkbox"
@@ -79,7 +79,7 @@ class Filter extends Component {
                 <span className="checkmark square" />
               </label>
               <label>
-                Solved
+                <p>Solved</p>
                 <input
                   onChange={() => this.props.searchManager({ hardness: 2 })}
                   type="checkbox"
@@ -110,7 +110,6 @@ class Filter extends Component {
               Questions №
             </button> */}
           </div>
-          <hr />
           <div>
             <button
               onClick={() => sessionStorage.clear()}

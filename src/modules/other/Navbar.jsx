@@ -23,19 +23,19 @@ class Navbar extends Component {
               <FontAwesomeIcon icon={faUserLock} /> Auth
               <b className="carret menu" />
             </div>
-
-            <div className="subMenu">
-              <Link to="/login">
-                <p>
+            <div>
+              {" "}
+              <div className="subMenu">
+                <Link to="/login">
                   <FontAwesomeIcon icon={faLock} /> Login
-                </p>
-              </Link>
-              <hr />
-              <Link to="/register">
-                <p>
+                </Link>
+
+                {/* <hr /> */}
+
+                <Link to="/register">
                   <FontAwesomeIcon icon={faLockOpen} /> Signup
-                </p>
-              </Link>
+                </Link>
+              </div>
             </div>
           </div>
 
