@@ -8,7 +8,8 @@ import {
   Navbar,
   User,
   Contacts,
-  FAQ
+  FAQ,
+  TestEditing
 } from "./modules/moduleExports.js";
 import "./styles/App.scss";
 
@@ -35,6 +36,8 @@ class App extends Component {
             path="/"
             component={() => <Landing testnet={testnet} />}
           />
+          <Route path="/edit" component={() => <TestEditing />} />
+
           <Route path="/login" component={() => <Login />} />
           <Route path="/test" component={() => <Test />} />
           <Route path="/register" component={() => <Register />} />

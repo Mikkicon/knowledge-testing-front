@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { DA, Statistics } from "../moduleExports.js";
-
+import bcrypt from "bcryptjs";
 class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      login: "",
       mail: "",
       pass: "",
       avatar: null,
@@ -14,6 +15,7 @@ class User extends Component {
     };
     this.handleAvatarUpload = this.handleAvatarUpload.bind(this);
     this.updateInfo = this.updateInfo.bind(this);
+    this.encryptPass = this.encryptPass.bind(this);
   }
 
   componentDidMount() {}
@@ -22,15 +24,23 @@ class User extends Component {
     // console.log(formData);
     // this.setState({ avatar: avatar.name });
   }
+  encryptPass(pass) {
+    let salt = bcrypt.genSaltSync();
+    let hash = bcrypt.hashSync(pass, salt);
+    return hash;
+  }
 
   updateInfo(info) {
-    let mail = sessionStorage.getItem("mail");
+    let token = sessionStorage.getItem("token");
     Object.keys(info).filter(a => !info[a] && delete info[a]);
+    info.token = token;
+    let encryptedPass = this.encryptPass(info.oldPass);
+    info.oldPass = encryptedPass;
     let body = JSON.stringify(info);
     console.log("Sending: ", body);
-    if (!mail) return;
-    fetch(`http://localhost:3000/user/${mail}`, {
-      method: "POST",
+    if (!token) return;
+    fetch(`http://localhost:3000/users`, {
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
       body
     })
@@ -39,7 +49,8 @@ class User extends Component {
   }
 
   render() {
-    const { mail, pass, avatar, oldPass, response, tests } = this.state;
+    const { login, mail, pass, avatar, oldPass, response, tests } = this.state;
+    const token = sessionStorage.getItem("token");
     setTimeout(() => response && this.setState({ response: null }), 3000);
     return (
       <div className="userPageCont">
@@ -62,51 +73,64 @@ class User extends Component {
         <br />
         <div className="userCont">
           <label className="contLabel">Statistics</label>
-          <Statistics values={tests} />
+          {token && <Statistics values={tests} />}
         </div>
-        <div className="userCont">
-          <label className="contLabel">Info</label>
-          <label>New E-Mail</label>
-          <input
-            onChange={({ target }) => this.setState({ mail: target.value })}
-            className="textInput"
-            type="email"
-            value={mail}
-            id="mail"
-          />
-          <hr />
-          <label>New Password</label>
-          <input
-            onChange={({ target }) => this.setState({ pass: target.value })}
-            className="textInput"
-            type="password"
-            value={pass}
-            id="pass"
-          />
-          <hr />
-          <label>Password</label>
-          <input
-            onChange={({ target }) => this.setState({ oldPass: target.value })}
-            className="textInput"
-            type="password"
-            value={oldPass}
-            id="oldPass"
-          />
-          <button
-            disabled={!(oldPass && (mail || pass))}
-            onClick={() =>
-              this.updateInfo({
-                mail: mail,
-                pass: pass,
-                avatar: avatar,
-                oldPass: oldPass
-              })
-            }
-            className="customBtn blue"
-          >
-            Save
-          </button>
-        </div>
+        {token && (
+          <div className="userCont">
+            <label className="contLabel">Info</label>
+            <label>New Login</label>
+            <input
+              onChange={({ target }) => this.setState({ login: target.value })}
+              className="textInput"
+              type="login"
+              value={login}
+              id="login"
+            />
+            <hr />
+            <label>New E-Mail</label>
+            <input
+              onChange={({ target }) => this.setState({ mail: target.value })}
+              className="textInput"
+              type="email"
+              value={mail}
+              id="mail"
+            />
+            <hr />
+            <label>New Password</label>
+            <input
+              onChange={({ target }) => this.setState({ pass: target.value })}
+              className="textInput"
+              type="password"
+              value={pass}
+              id="pass"
+            />
+            <hr />
+            <label>Password</label>
+            <input
+              onChange={({ target }) =>
+                this.setState({ oldPass: target.value })
+              }
+              className="textInput"
+              type="password"
+              value={oldPass}
+              id="oldPass"
+            />
+            <button
+              disabled={!(oldPass && (mail || pass))}
+              onClick={() =>
+                this.updateInfo({
+                  mail: mail,
+                  pass: pass,
+                  avatar: avatar,
+                  oldPass: oldPass
+                })
+              }
+              className="customBtn blue"
+            >
+              Save
+            </button>
+          </div>
+        )}
         {response && (
           <div className="userCont">
             <h1>{response}</h1>

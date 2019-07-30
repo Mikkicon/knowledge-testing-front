@@ -34,9 +34,9 @@ class Login extends Component {
     });
     if (response.status === 200) {
       let { mail, token } = await response.json();
-      !sessionStorage.getItem("token") &&
-        (sessionStorage.setItem("token", token) &&
-          sessionStorage.setItem("mail", mail));
+
+      sessionStorage.setItem("token", token) &&
+        sessionStorage.setItem("mail", mail);
       this.props.history.push("/");
     } else {
       this.setState({ info: "Authentication failed" });

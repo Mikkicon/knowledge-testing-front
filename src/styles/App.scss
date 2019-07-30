@@ -651,7 +651,7 @@ i {
 .answers > label:hover {
   background: rgb(120, 150, 187);
 }
-.answers input {
+.answers input[type="radio"] {
   position: absolute;
   opacity: 0;
   cursor: pointer;

@@ -8,6 +8,7 @@ import Statistics from "./other/Statistics";
 import Register from "./auth/Register";
 import TestOnLanding from "./landing/TestOnLanding";
 import Filter from "./landing/Filter";
+import TestEditing from "./testView/TestEditing.jsx";
 import Footer from "./landing/Footer";
 import User from "./auth/User";
 import Contacts from "./other/Contacts";
@@ -48,6 +49,7 @@ export {
   Register,
   TestOnLanding,
   Filter,
+  TestEditing,
   Footer,
   User,
   Contacts,
