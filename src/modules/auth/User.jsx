@@ -118,12 +118,7 @@ class User extends Component {
             <button
               disabled={!(oldPass && (mail || pass))}
               onClick={() =>
-                this.updateInfo({
-                  mail: mail,
-                  pass: pass,
-                  avatar: avatar,
-                  oldPass: oldPass
-                })
+                this.updateInfo({ login, mail, pass, avatar, oldPass })
               }
               className="customBtn blue"
             >

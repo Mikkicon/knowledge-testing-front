@@ -90,7 +90,7 @@ $blueHover: #366eaf;
 
 /* --------------------------------CONTACTS-------------------------------- */
 
-img {
+.galleryContainer img {
   width: 300px;
   height: auto;
 }
@@ -268,6 +268,9 @@ a {
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
+input[type="checkbox"] {
+  opacity: 0;
+}
 /* --------------------------------LEFTMENU-------------------------------- */
 
 .landingCont > .burger {
@@ -309,7 +312,36 @@ a {
 .landingCont {
   text-align: center;
 }
-
+.landingSlider {
+  margin-top: -25px;
+}
+#description {
+  position: absolute;
+  font-size: 2em;
+}
+.sliderRow {
+  margin: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+.slides {
+  width: 100%;
+}
+.landingHeader {
+  position: absolute;
+  top: 30%;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 3em;
+  width: 100%;
+  text-align: center;
+}
+.sectionsMenu {
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+}
 .allTestsPreviewCont {
   display: flex;
   flex-wrap: wrap;
@@ -902,6 +934,14 @@ i {
   }
 }
 @media (max-width: 480px) {
+  .landingHeader {
+    top: 10%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    font-size: 1em;
+    width: 100%;
+    text-align: center;
+  }
   .userCont {
     width: 80%;
   }

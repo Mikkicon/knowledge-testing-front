@@ -20,7 +20,7 @@ class Statistics extends Component {
     var dpr = window.devicePixelRatio || 1;
     var rect = canvas.getBoundingClientRect();
     canvas.width = width || 350;
-    canvas.height = rect.height * dpr;
+    canvas.height = rect.height * dpr + 20;
     var ctx = canvas.getContext("2d");
 
     ctx.fillStyle = "white";
@@ -29,7 +29,7 @@ class Statistics extends Component {
     ctx.scale(scale, scale);
     ctx.lineWidth = 1;
 
-    let bottom = canvas.height / 1.5 - 20;
+    let bottom = canvas.height / 1.5 - 10;
     this.setState({ bottom });
 
     console.log("canvas.height", canvas.height);
@@ -75,13 +75,10 @@ class Statistics extends Component {
       ctx.fillText(tests[i].test_Id, i * dataInterval + dataInterval, bottom);
     }
     for (let i = 1; i < tests.length; i++) {
-      ctx.moveTo(
-        i * dataInterval,
-        bottom - tests[i - 1].score * dataInterval - 20
-      );
+      ctx.moveTo(i * dataInterval, bottom - tests[i - 1].score * dataInterval);
       ctx.lineTo(
         i * dataInterval + dataInterval,
-        bottom - tests[i].score * dataInterval - 20
+        bottom - tests[i].score * dataInterval
       );
     }
     ctx.stroke();

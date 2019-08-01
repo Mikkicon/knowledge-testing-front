@@ -12,6 +12,7 @@ import {
   TestEditing
 } from "./modules/moduleExports.js";
 import "./styles/App.scss";
+import Coding from "./modules/testView/Coding.jsx";
 
 class App extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class App extends Component {
             component={() => <Landing testnet={testnet} />}
           />
           <Route path="/edit" component={() => <TestEditing />} />
-
+          <Route path="/coding" component={() => <Coding />} />
           <Route path="/login" component={() => <Login />} />
           <Route path="/test" component={() => <Test />} />
           <Route path="/register" component={() => <Register />} />

@@ -58,7 +58,7 @@ class TestEditing extends Component {
   }
 
   submit() {
-    const test = this.updateTest();
+    // const test = this.updateTest();
     const title = window.prompt("Title:", "Anonymous");
     const hardness = window.prompt("Hardness:", 0);
     const { fullTest } = this.state;

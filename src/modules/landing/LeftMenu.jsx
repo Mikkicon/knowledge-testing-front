@@ -5,6 +5,7 @@ import {
   faCode,
   faFlag,
   faFilm,
+  faPen,
   FontAwesomeIcon
 } from "../moduleExports.js";
 
@@ -24,18 +25,23 @@ class LeftMenu extends Component {
               </Link>
             </li>
             <li>
-              <Link to="/psycology">
+              <Link style={{ opacity: "0.3" }} to="/">
                 <FontAwesomeIcon icon={faBrain} /> Psycology
               </Link>
             </li>
             <li>
-              <Link to="/flags">
+              <Link style={{ opacity: "0.3" }} to="/">
                 <FontAwesomeIcon icon={faFlag} /> Flags
               </Link>
             </li>
             <li>
-              <Link to="/movies">
+              <Link style={{ opacity: "0.3" }} to="/">
                 <FontAwesomeIcon icon={faFilm} /> Movies
+              </Link>
+            </li>
+            <li>
+              <Link to="/edit">
+                <FontAwesomeIcon icon={faPen} /> Create your own
               </Link>
             </li>
           </ul>

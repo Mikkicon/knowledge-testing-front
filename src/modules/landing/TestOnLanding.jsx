@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { JS, CPP, CS, JAVA } from "../moduleExports.js";
+import {
+  JS,
+  CPP,
+  CS,
+  JAVA,
+  FLAGS,
+  MOVIES,
+  PSYCOLOGY,
+  CODING
+} from "../moduleExports.js";
 
 class TestOnLanding extends Component {
   getPicture = title => {
@@ -13,6 +22,14 @@ class TestOnLanding extends Component {
         return CS;
       case "Java":
         return JAVA;
+      case "Coding":
+        return CODING;
+      case "Movies":
+        return MOVIES;
+      case "Psycology":
+        return PSYCOLOGY;
+      case "Flags":
+        return FLAGS;
       default:
         return JS;
     }
@@ -20,8 +37,8 @@ class TestOnLanding extends Component {
 
   render() {
     return (
-      <div className="testPreviewCont">
-        <Link to={"test/" + this.props.id}>
+      <div style={this.props.style} className="testPreviewCont">
+        <Link to={this.props.id}>
           <div className="testName">{this.props.title}</div>
           <img
             className="testImage"

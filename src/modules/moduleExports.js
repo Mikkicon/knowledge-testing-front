@@ -20,6 +20,13 @@ import CPP from "../media/cpp.jpg";
 import CS from "../media/cs.jpg";
 import JAVA from "../media/java.jpg";
 import TRAVEL from "../media/travel.jpg";
+import LEFT from "../media/left.png";
+import STATS from "../media/stats.png";
+import EDIT from "../media/edit.png";
+import CODING from "../media/coding.jpg";
+import PSYCOLOGY from "../media/psycology.jpg";
+import FLAGS from "../media/flags.jpg";
+import MOVIES from "../media/movies.jpg";
 import ME from "../media/me.JPG";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -35,7 +42,8 @@ import {
   faLock,
   faPuzzlePiece,
   faLockOpen,
-  faUserLock
+  faUserLock,
+  faPen
 } from "@fortawesome/free-solid-svg-icons";
 
 export {
@@ -61,6 +69,13 @@ export {
   CS,
   JAVA,
   TRAVEL,
+  LEFT,
+  STATS,
+  EDIT,
+  FLAGS,
+  CODING,
+  MOVIES,
+  PSYCOLOGY,
   ME,
   FontAwesomeIcon,
   faMailBulk,
@@ -73,6 +88,7 @@ export {
   faUserSecret,
   faUser,
   faLock,
+  faPen,
   faPuzzlePiece,
   faLockOpen,
   faUserLock
