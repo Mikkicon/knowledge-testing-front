@@ -23,12 +23,16 @@ class TestEditing extends Component {
   writeQuestion(qNum, question) {
     let questions = this.state.questions.slice(-1);
     questions[qNum] = question;
+    console.log(qNum, questions);
+
     this.setState({ questions });
   }
   writeAnswer(index, answer) {
     let currentAnswers = [...this.state.currentAnswers];
     currentAnswers[index] = answer;
     this.setState({ currentAnswers });
+
+    console.log(currentAnswers);
   }
 
   updateTest() {
@@ -58,13 +62,12 @@ class TestEditing extends Component {
   }
 
   submit() {
-    // const test = this.updateTest();
+    const test = this.updateTest();
     const title = window.prompt("Title:", "Anonymous");
     const hardness = window.prompt("Hardness:", 0);
-    const { fullTest } = this.state;
-    fullTest["title"] = title;
-    fullTest["hardness"] = hardness;
-    let body = JSON.stringify(fullTest);
+    test["title"] = title;
+    test["hardness"] = hardness;
+    let body = JSON.stringify(test);
     fetch(`http://localhost:3000/tests`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -100,10 +103,11 @@ class TestEditing extends Component {
         <span className="round checkmark" />
       </label>
     ));
+
     let allFieldsFilled =
       currentQuestion &&
       currentAnswers.every(answer => answer !== "") &&
-      currentCorrect
+      currentCorrect !== null
         ? { display: "flex" }
         : { display: "none" };
 
@@ -134,7 +138,7 @@ class TestEditing extends Component {
             </div>
           </div>
         </div>
-        <div>{fullTest.toString()}</div>
+        {/* <div>{fullTest.toString()}</div> */}
       </div>
     );
   }
