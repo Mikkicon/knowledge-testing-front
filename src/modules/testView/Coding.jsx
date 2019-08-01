@@ -161,7 +161,7 @@ class Coding extends Component {
           {filteredTests.map((test, index) => (
             <TestOnLanding
               title={test.title}
-              id={"test/" + currentPage * 10 + index}
+              id={"test/" + (currentPage * 10 + index)}
               key={index}
             />
           ))}

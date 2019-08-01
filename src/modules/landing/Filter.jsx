@@ -56,12 +56,13 @@ class Filter extends Component {
           <hr />
           <div>
             <h3>Completion</h3>
+            <small>(Coming soon)</small>
             <br />
-            <div className="answers">
+            <div style={{ opacity: "0.3" }} className="answers">
               <label>
                 <p>All</p>
                 <input
-                  onChange={() => this.props.searchManager({ hardness: 2 })}
+                  // onChange={() => this.props.searchManager({ hardness: 2 })}
                   type="checkbox"
                   name="completeness"
                   id="all"
@@ -71,7 +72,7 @@ class Filter extends Component {
               <label>
                 <p>Unsolved</p>
                 <input
-                  onChange={() => this.props.searchManager({ hardness: 2 })}
+                  // onChange={() => this.props.searchManager({ hardness: 2 })}
                   type="checkbox"
                   name="completeness"
                   id="unsolved"
@@ -81,7 +82,7 @@ class Filter extends Component {
               <label>
                 <p>Solved</p>
                 <input
-                  onChange={() => this.props.searchManager({ hardness: 2 })}
+                  // onChange={() => this.props.searchManager({ hardness: 2 })}
                   type="checkbox"
                   name="completeness"
                   id="solved"

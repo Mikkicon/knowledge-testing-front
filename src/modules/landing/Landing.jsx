@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { LEFT, STATS, EDIT, TestOnLanding } from "../moduleExports";
+import Footer from "./Footer";
 
 class Landing extends Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class Landing extends Component {
           <TestOnLanding id={"/"} style={{ opacity: "0.3" }} title={"Flags"} />
           <TestOnLanding id={"/"} style={{ opacity: "0.3" }} title={"Movies"} />
         </div>
+        <Footer />
       </div>
     );
   }

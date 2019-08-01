@@ -339,8 +339,9 @@ input[type="checkbox"] {
 }
 .sectionsMenu {
   display: flex;
-  margin-top: 50px;
+  margin: 100px 0;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .allTestsPreviewCont {
   display: flex;
@@ -936,11 +937,14 @@ i {
 @media (max-width: 480px) {
   .landingHeader {
     top: 10%;
-    padding: 10px;
+    padding: 10px 0;
     background: rgba(0, 0, 0, 0.3);
     font-size: 1em;
     width: 100%;
     text-align: center;
+  }
+  #description {
+    font-size: 1em;
   }
   .userCont {
     width: 80%;
