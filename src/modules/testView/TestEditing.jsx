@@ -82,8 +82,7 @@ class TestEditing extends Component {
       qNum,
       currentQuestion,
       currentAnswers,
-      currentCorrect,
-      fullTest
+      currentCorrect
     } = this.state;
     const answersComp = [0, 1, 2, 3].map(index => (
       <label key={index}>
