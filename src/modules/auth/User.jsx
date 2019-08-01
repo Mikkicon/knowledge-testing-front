@@ -16,9 +16,26 @@ class User extends Component {
     this.handleAvatarUpload = this.handleAvatarUpload.bind(this);
     this.updateInfo = this.updateInfo.bind(this);
     this.encryptPass = this.encryptPass.bind(this);
+    this.getUserInfo = this.getUserInfo.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    let token = sessionStorage.getItem("token");
+    this.getUserInfo(token);
+  }
+
+  async getUserInfo(token) {
+    let response = await fetch(`http://localhost:3000/users/info`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token })
+    });
+    let userInfo = await response.json();
+    console.log(userInfo);
+
+    sessionStorage.setItem("login", userInfo["login"]);
+  }
+
   handleAvatarUpload([avatar]) {
     console.log(avatar);
     // console.log(formData);

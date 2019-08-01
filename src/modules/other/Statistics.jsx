@@ -20,7 +20,9 @@ class Statistics extends Component {
     var dpr = window.devicePixelRatio || 1;
     var rect = canvas.getBoundingClientRect();
     canvas.width = width || 350;
-    canvas.height = rect.height * dpr + 20;
+    console.log(rect, dpr);
+
+    canvas.height = rect.height * dpr + 40 / dpr;
     var ctx = canvas.getContext("2d");
 
     ctx.fillStyle = "white";
