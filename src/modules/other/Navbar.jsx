@@ -7,11 +7,13 @@ import {
   faPuzzlePiece,
   faLockOpen,
   faUserLock,
-  FontAwesomeIcon
+  FontAwesomeIcon,
+  faDoorOpen
 } from "../moduleExports.js";
 
 class Navbar extends Component {
   render() {
+    const { token, login, updateNavBar } = this.props;
     return (
       <React.Fragment>
         <div className="nav">
@@ -26,9 +28,23 @@ class Navbar extends Component {
             <div>
               {" "}
               <div className="subMenu">
-                <Link to="/login">
-                  <FontAwesomeIcon icon={faLock} /> Login
-                </Link>
+                {token ? (
+                  <button
+                    onClick={() => {
+                      sessionStorage.removeItem("token");
+                      sessionStorage.removeItem("login");
+                      updateNavBar();
+                    }}
+                  >
+                    {" "}
+                    <FontAwesomeIcon icon={faDoorOpen} />
+                    Logout
+                  </button>
+                ) : (
+                  <Link to="/login">
+                    <FontAwesomeIcon icon={faLock} /> Login
+                  </Link>
+                )}
 
                 {/* <hr /> */}
 
@@ -47,7 +63,8 @@ class Navbar extends Component {
 
           <Link className="menuItem" to="/user/">
             <div>
-              <FontAwesomeIcon icon={faUser} /> Me
+              <FontAwesomeIcon icon={faUser} />{" "}
+              {login ? login.toUpperCase() : "Me"}
             </div>
           </Link>
           <div className="uniTestName">UniTest</div>
@@ -65,11 +82,27 @@ class Navbar extends Component {
                   <FontAwesomeIcon icon={faPhone} /> Contacts
                 </div>
               </Link>
-              <Link className="menuItemPhone" to="/login">
-                <div>
-                  <FontAwesomeIcon icon={faLock} /> Login
-                </div>
-              </Link>
+              {token ? (
+                <button
+                  onClick={() => {
+                    sessionStorage.removeItem("token");
+                    sessionStorage.removeItem("login");
+                    updateNavBar();
+                  }}
+                >
+                  <div>
+                    {" "}
+                    <FontAwesomeIcon icon={faDoorOpen} />
+                    Logout
+                  </div>
+                </button>
+              ) : (
+                <Link className="menuItemPhone" to="/login">
+                  <div>
+                    <FontAwesomeIcon icon={faLock} /> Login
+                  </div>
+                </Link>
+              )}
               <Link className="menuItemPhone" to="/register">
                 <div>
                   <FontAwesomeIcon icon={faLock} /> Signup
@@ -77,7 +110,8 @@ class Navbar extends Component {
               </Link>
               <Link className="menuItemPhone" to="/user/">
                 <div>
-                  <FontAwesomeIcon icon={faUser} /> Me
+                  <FontAwesomeIcon icon={faUser} />{" "}
+                  {login ? login.toUpperCase() : "Me"}
                 </div>
               </Link>
             </div>

@@ -23,6 +23,7 @@ class Coding extends Component {
     this.filterResult = this.filterResult.bind(this);
     this.sortManager = this.sortManager.bind(this);
     this.searchManager = this.searchManager.bind(this);
+    this.searchFromServer = this.searchFromServer.bind(this);
   }
   componentDidMount() {
     this.timeoutHandler = setTimeout(
@@ -68,8 +69,29 @@ class Coding extends Component {
     }
   }
 
+  searchFromServer(queryToBack) {
+    console.log(queryToBack);
+
+    fetch(`http://localhost:3000/tests?${queryToBack}`)
+      .then(response => response.json())
+      // .then(({ tests, pageAmount }) => {
+      //   this.setState({
+      //     tests,
+      //     filteredTests: tests,
+      //     pageAmount
+      //   });
+      // })
+      .catch(err => console.log(err));
+  }
+
   filterResult(filteredTests) {
-    const { selectedHardneses, searchQuery, tests } = this.state;
+    const { selectedHardneses, searchQuery, tests, currentPage } = this.state;
+    var queryToBack = `page=${currentPage}&`;
+    if (searchQuery) queryToBack += `search=${searchQuery}`;
+    if (searchQuery && selectedHardneses.size) queryToBack += `&`;
+    if (selectedHardneses.size)
+      queryToBack += `hardness=${[...selectedHardneses].join("")}`;
+
     if (!selectedHardneses.size && !searchQuery) {
       this.setState({ filteredTests: tests });
     } else if (!selectedHardneses.size) {
@@ -86,6 +108,7 @@ class Coding extends Component {
       );
       this.setState({ filteredTests });
     }
+    this.searchFromServer(queryToBack);
   }
 
   loadPage(newCurrentPage) {

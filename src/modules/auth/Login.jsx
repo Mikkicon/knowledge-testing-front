@@ -32,11 +32,15 @@ class Login extends Component {
         pass: encryptedPass
       })
     });
-    if (response.status === 200) {
-      let { mail, token } = await response.json();
 
-      sessionStorage.setItem("token", token) &&
-        sessionStorage.setItem("mail", mail);
+    if (response.status === 200) {
+      response.json().then(({ login, token }) => {
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("login", login);
+        console.log(token, login);
+        this.props.updateNavBar(token, login);
+      });
+
       this.props.history.push("/");
     } else {
       this.setState({ info: "Authentication failed" });

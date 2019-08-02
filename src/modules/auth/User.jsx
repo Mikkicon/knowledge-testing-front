@@ -16,24 +16,12 @@ class User extends Component {
     this.handleAvatarUpload = this.handleAvatarUpload.bind(this);
     this.updateInfo = this.updateInfo.bind(this);
     this.encryptPass = this.encryptPass.bind(this);
-    this.getUserInfo = this.getUserInfo.bind(this);
+    this.deleteAccount = this.deleteAccount.bind(this);
   }
 
   componentDidMount() {
-    let token = sessionStorage.getItem("token");
-    this.getUserInfo(token);
-  }
-
-  async getUserInfo(token) {
-    let response = await fetch(`http://localhost:3000/users/info`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token })
-    });
-    let userInfo = await response.json();
-    console.log(userInfo);
-
-    sessionStorage.setItem("login", userInfo["login"]);
+    // let token = sessionStorage.getItem("token");
+    // this.getUserInfo(token);
   }
 
   handleAvatarUpload([avatar]) {
@@ -46,7 +34,9 @@ class User extends Component {
     let hash = bcrypt.hashSync(pass, salt);
     return hash;
   }
-
+  deleteAccount() {
+    console.log("Deleted");
+  }
   updateInfo(info) {
     let token = sessionStorage.getItem("token");
     Object.keys(info).filter(a => !info[a] && delete info[a]);
@@ -141,11 +131,12 @@ class User extends Component {
             >
               Save
             </button>
-          </div>
-        )}
-        {response && (
-          <div className="userCont">
-            <h1>{response}</h1>
+            <button
+              onClick={() => this.deleteAccount(token)}
+              className="customBtn red"
+            >
+              Delete Account
+            </button>
           </div>
         )}
       </div>

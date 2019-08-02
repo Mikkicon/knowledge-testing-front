@@ -43,7 +43,8 @@ import {
   faPuzzlePiece,
   faLockOpen,
   faUserLock,
-  faPen
+  faPen,
+  faDoorOpen
 } from "@fortawesome/free-solid-svg-icons";
 
 export {
@@ -88,6 +89,7 @@ export {
   faUserSecret,
   faUser,
   faLock,
+  faDoorOpen,
   faPen,
   faPuzzlePiece,
   faLockOpen,

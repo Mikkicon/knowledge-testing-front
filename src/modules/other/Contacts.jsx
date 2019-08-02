@@ -59,7 +59,7 @@ class Contacts extends Component {
         </div>
         <div className="galleryContainer">
           <div className="gallery">
-            <a target="_blank" rel="noopener noreferrer" href={DA}>
+            <a target="_blank" rel="noopener noreferrer" href={ME}>
               <img src={ME} alt="Misha" />
             </a>
             <div className="desc">
@@ -67,7 +67,7 @@ class Contacts extends Component {
             </div>
           </div>
           <div className="gallery">
-            <a target="_blank" rel="noopener noreferrer" href={DA}>
+            <a target="_blank" rel="noopener noreferrer" href={ME}>
               <img src={ME} alt="Misha" />
             </a>
             <div className="desc">
@@ -75,7 +75,7 @@ class Contacts extends Component {
             </div>
           </div>
           <div className="gallery">
-            <a target="_blank" rel="noopener noreferrer" href={DA}>
+            <a target="_blank" rel="noopener noreferrer" href={ME}>
               <img src={ME} alt="Misha" />
             </a>
             <div className="desc">
@@ -83,7 +83,7 @@ class Contacts extends Component {
             </div>
           </div>
           <div className="gallery">
-            <a target="_blank" rel="noopener noreferrer" href={DA}>
+            <a target="_blank" rel="noopener noreferrer" href={ME}>
               <img src={ME} alt="Misha" />
             </a>
             <div className="desc">
@@ -91,7 +91,7 @@ class Contacts extends Component {
             </div>
           </div>
           <div className="gallery">
-            <a target="_blank" rel="noopener noreferrer" href={DA}>
+            <a target="_blank" rel="noopener noreferrer" href={TRAVEL}>
               <img src={TRAVEL} alt="Different size" />
             </a>
             <div className="desc">
@@ -104,9 +104,9 @@ class Contacts extends Component {
             google={this.props.google}
             zoom={8}
             style={mapStyles}
-            initialCenter={{ lat: 47.444, lng: -122.176 }}
+            initialCenter={{ lat: 50.4501, lng: 30.5234 }}
           >
-            <Marker position={{ lat: 48.0, lng: -122.0 }} />
+            <Marker position={{ lat: 50.4501, lng: 30.5234 }} />
           </Map> */}
         </div>
         <div className="shares">

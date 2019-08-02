@@ -22,14 +22,14 @@ class Test extends Component {
     const { id } = this.state;
     console.log(id);
     this.intervalHandle = setInterval(this.tick, 1000);
-    if (!sessionStorage.hasOwnProperty(id))
+    if (!localStorage.hasOwnProperty(id))
       fetch("http://localhost:3000/tests/" + id)
         .then(rawTest => (rawTest ? rawTest.json() : console.log("REJECT")))
         .then(testData => {
           this.setState({ testData });
           return testData;
         })
-        .then(test => sessionStorage.setItem(id, JSON.stringify(test)))
+        .then(test => localStorage.setItem(id, JSON.stringify(test)))
         .catch(err => console.log(err));
   }
   componentWillUnmount() {
@@ -94,8 +94,8 @@ class Test extends Component {
       correct
     } = this.state;
 
-    let { title, questions, answers } = sessionStorage.hasOwnProperty(id)
-      ? JSON.parse(sessionStorage.getItem(id))
+    let { title, questions, answers } = localStorage.hasOwnProperty(id)
+      ? JSON.parse(localStorage.getItem(id))
       : this.state.testData;
 
     let answersComp = null,

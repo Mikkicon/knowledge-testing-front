@@ -19,15 +19,35 @@ class App extends Component {
     super(props);
     this.state = {
       testnet: false,
-      testList: []
+      testList: [],
+      token: null,
+      login: null
     };
+    this.updateNavBar = this.updateNavBar.bind(this);
+  }
+  componentDidMount() {
+    let login = sessionStorage.getItem("login");
+    let token = sessionStorage.getItem("token");
+    this.updateNavBar(token, login);
+  }
+  updateNavBar(token = null, login = null) {
+    console.log(token, login);
+    if (token && login) {
+      this.setState({ token, login });
+    } else {
+      this.setState({ token: null, login: null });
+    }
   }
   render() {
-    const { testnet } = this.state;
+    const { testnet, token, login } = this.state;
     return (
       <React.Fragment>
         <BrowserRouter>
-          <Navbar />
+          <Navbar
+            updateNavBar={() => this.updateNavBar()}
+            token={token}
+            login={login}
+          />
           <br />
           <br />
           <br />
@@ -39,7 +59,14 @@ class App extends Component {
           />
           <Route path="/edit" component={() => <TestEditing />} />
           <Route path="/coding" component={() => <Coding />} />
-          <Route path="/login" component={() => <Login />} />
+          <Route
+            path="/login"
+            component={() => (
+              <Login
+                updateNavBar={(token, login) => this.updateNavBar(token, login)}
+              />
+            )}
+          />
           <Route path="/test" component={() => <Test />} />
           <Route path="/register" component={() => <Register />} />
           <Route path="/contacts" component={() => <Contacts />} />

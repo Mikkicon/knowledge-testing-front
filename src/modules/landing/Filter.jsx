@@ -113,7 +113,7 @@ class Filter extends Component {
           </div>
           <div>
             <button
-              onClick={() => sessionStorage.clear()}
+              onClick={() => localStorage.clear()}
               className="customBtn green"
             >
               Clear cached tests
