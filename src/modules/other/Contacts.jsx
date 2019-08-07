@@ -138,6 +138,6 @@ class Contacts extends Component {
   }
 }
 // export default GoogleApiWrapper({
-//   apiKey: "AIzaSyDPhTs3oNuTxjF18uaYFC8tKtNeRhAgxFI"
+//   apiKey: 
 // })(Contacts);
 export default Contacts;
